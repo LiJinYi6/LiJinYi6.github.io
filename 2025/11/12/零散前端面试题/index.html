@@ -1,0 +1,1710 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>前端面试题（零散版） | 柯柯&amp;BLOG</title><meta name="author" content="柯柯"><meta name="copyright" content="柯柯"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="基础八股 sass和css区别    CSS 是用于设置网页样式的标准样式语言，浏览器原生支持。 没有变量、嵌套、函数等程序化能力。    position属性，几种定位方式的区别 绝对定位是相对于谁的，对父级定位元素的要求    absolute(相对于第一个不为static的父级元素定位-脱离文档流) relative（相对于自身-占据原来为位置） fixed（相对于浏览器视窗-脱离文档流）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="前端面试题（零散版）">
+<meta property="og:url" content="https://riff-ligo.github.io/2025/11/12/%E9%9B%B6%E6%95%A3%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98/index.html">
+<meta property="og:site_name" content="柯柯&amp;BLOG">
+<meta property="og:description" content="基础八股 sass和css区别    CSS 是用于设置网页样式的标准样式语言，浏览器原生支持。 没有变量、嵌套、函数等程序化能力。    position属性，几种定位方式的区别 绝对定位是相对于谁的，对父级定位元素的要求    absolute(相对于第一个不为static的父级元素定位-脱离文档流) relative（相对于自身-占据原来为位置） fixed（相对于浏览器视窗-脱离文档流）">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://riff-ligo.github.io/img/avatar.jpg">
+<meta property="article:published_time" content="2025-11-12T03:09:02.000Z">
+<meta property="article:modified_time" content="2025-11-02T03:33:36.996Z">
+<meta property="article:author" content="柯柯">
+<meta property="article:tag" content="前端八股">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://riff-ligo.github.io/img/avatar.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "前端面试题（零散版）",
+  "url": "https://riff-ligo.github.io/2025/11/12/%E9%9B%B6%E6%95%A3%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98/",
+  "image": "https://riff-ligo.github.io/img/avatar.jpg",
+  "datePublished": "2025-11-12T03:09:02.000Z",
+  "dateModified": "2025-11-02T03:33:36.996Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "柯柯",
+      "url": "https://riff-ligo.github.io/"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/avatar.jpg"><link rel="canonical" href="https://riff-ligo.github.io/2025/11/12/%E9%9B%B6%E6%95%A3%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Failed',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '前端面试题（零散版）',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">6</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">3</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">2</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-homeo"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/note"><i class="fa-fw fas fa-book"></i><span> 随记</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></div><div class="menus_item"><a class="site-page" href="/gallery/"><i class="fa-fw fas fa-images"></i><span> 图库</span></a></div><div class="menus_item"><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header" style="background-image: url(/img/mainTopBkg.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">柯柯&amp;BLOG</span></a><a class="nav-page-title" href="/"><span class="site-name">前端面试题（零散版）</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-homeo"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/note"><i class="fa-fw fas fa-book"></i><span> 随记</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></div><div class="menus_item"><a class="site-page" href="/gallery/"><i class="fa-fw fas fa-images"></i><span> 图库</span></a></div><div class="menus_item"><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">前端面试题（零散版）</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2025-11-12T03:09:02.000Z" title="Created 2025-11-12 11:09:02">2025-11-12</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2025-11-02T03:33:36.996Z" title="Updated 2025-11-02 11:33:36">2025-11-02</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%85%AB%E8%82%A1%E7%AE%97%E6%B3%95/">八股算法</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post Views:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1 id="基础八股"><a href="#基础八股" class="headerlink" title="基础八股"></a>基础八股</h1><ol>
+<li>sass和css区别</li>
+</ol>
+<blockquote>
+</blockquote>
+<p>CSS 是用于设置网页样式的标准样式语言，浏览器原生支持。</p>
+<p>没有变量、嵌套、函数等程序化能力。</p>
+<blockquote>
+</blockquote>
+<ol start="2">
+<li>position属性，几种定位方式的区别 绝对定位是相对于谁的，对父级定位元素的要求</li>
+</ol>
+<blockquote>
+</blockquote>
+<p>absolute(相对于第一个不为static的父级元素定位-脱离文档流)</p>
+<p>relative（相对于自身-占据原来为位置）</p>
+<p>fixed（相对于浏览器视窗-脱离文档流）</p>
+<p>static（默认值，按文档流排列）</p>
+<p>sticky（根据滚动位置在relative和fixed之间切换-兼容问题，现代浏览器支持）</p>
+<pre><code>sticky超过一定阈值变成fixed定位，否则是相对定位，另外sticky元素的父级不能是overflow:hidden或overflow:auto的元素
+</code></pre>
+<blockquote>
+</blockquote>
+<ol start="3">
+<li>display属性</li>
+</ol>
+<blockquote>
+</blockquote>
+<p>block（块级元素）</p>
+<p>inline（行内元素）</p>
+<p>inline-block（行内块元素，可以设置高度）</p>
+<p>none（隐藏元素，不保留位置）</p>
+<p>flex，inline-flex</p>
+<p>grid，inline-grid</p>
+<p>table</p>
+<blockquote>
+</blockquote>
+<ol start="5">
+<li>块级元素&#x2F;行内元素&#x2F;行内块元素的区别</li>
+</ol>
+<blockquote>
+<p>块级元素往往独占一行，行内元素可以和其他元素在同一行</p>
+</blockquote>
+<blockquote>
+<p>行内块的话虽然和其他元素同在一行但是可以设置高度。</p>
+</blockquote>
+<ol start="4">
+<li>盒模型</li>
+</ol>
+<blockquote>
+<p>css 盒模型分为标准盒模型和怪异盒模型，默认为标准盒模型只需要设置box-sizing属性为 boder-box 可以变为怪异盒模型，</p>
+</blockquote>
+<p>不同之处，标准盒模型的width &#x3D; 内容宽度，而怪异盒模型的width &#x3D; 内容宽度+padding+border</p>
+<blockquote>
+</blockquote>
+<ol start="6">
+<li>css画三角形</li>
+</ol>
+<blockquote>
+</blockquote>
+<p>.triangle-up {</p>
+<p>  width: 0;</p>
+<p>  height: 0;</p>
+<p>  border-left: 50px solid transparent;  &#x2F;* 左边透明 *&#x2F;</p>
+<p>  border-right: 50px solid transparent; &#x2F;* 右边透明 *&#x2F;</p>
+<p>  border-bottom: 100px solid #f00;      &#x2F;* 下边有颜色 *&#x2F;</p>
+<p>}</p>
+<p>整个盒子宽高为 0；</p>
+<p>用左、右透明边框撑出宽度；</p>
+<p>用底部有色边框撑出高度，形成一个朝上的等腰三角形。</p>
+<blockquote>
+</blockquote>
+<ol start="7">
+<li>css画圆</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">.<span class="property">circle</span> &#123;</span><br><span class="line"></span><br><span class="line">  <span class="attr">width</span>: 100px;</span><br><span class="line"></span><br><span class="line">  <span class="attr">height</span>: 100px;</span><br><span class="line"></span><br><span class="line">  border-<span class="attr">radius</span>: <span class="number">50</span>%;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ol start="8">
+<li>css中如何隐藏元素</li>
+</ol>
+<blockquote>
+</blockquote>
+<p>display:none</p>
+<blockquote>
+</blockquote>
+<ol start="9">
+<li>伪元素和伪类 追问首字母选中怎么用的</li>
+</ol>
+<blockquote>
+</blockquote>
+<p>伪元素：主要是对某个元素的一部分进行样式设置-只有块级元素才可以使用伪元素</p>
+<p>伪类：主要是针对元素处于某个状态时对样式的设置</p>
+<p>首字母选中</p>
+<p>：：first-letter</p>
+<p>其他伪元素</p>
+<p>伪元素作用说明代表用途</p>
+<p>::before内容前插入装饰、图标</p>
+<p>::after内容后插入清浮动、装饰</p>
+<p>::first-letter选首字母首字下沉、杂志风格</p>
+<p>::first-line选首行首行高亮、排版</p>
+<p>::placeholder占位文本表单输入提示美化</p>
+<p>::selection选中内容高亮客户端选中样式</p>
+<p>::backdrop模态背景层dialog 背景美化</p>
+<blockquote>
+</blockquote>
+<ol start="10">
+<li>媒体查询</li>
+</ol>
+<ul>
+<li><p>用于响应式设计，针对不同尺寸的设备设置不同的样式，主要通过关键字@media 条件来设置不同的样式。</p>
+</li>
+<li><p>常用条件</p>
+<ul>
+<li><p>min-width — 最小宽度（宽度 &gt;&#x3D; …）</p>
+</li>
+<li><p>max-width — 最大宽度（宽度 &lt;&#x3D; …）</p>
+</li>
+<li><p>orientation — 方向（portrait 竖屏，landscape 横屏）</p>
+</li>
+<li><p>min-height &#x2F; max-height</p>
+</li>
+<li><p>resolution — 分辨率</p>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">@media screen <span class="title function_">and</span> (min-<span class="attr">width</span>: 320px) <span class="title function_">and</span> (max-<span class="attr">width</span>: 480px) &#123;</span><br><span class="line"></span><br><span class="line">  body &#123;</span><br><span class="line"></span><br><span class="line">    background-<span class="attr">color</span>: red;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ol start="11">
+<li>Vue 中 v-model</li>
+</ol>
+<p>vue 中 v-model 属于双向绑定，是 vue 响应式系统的特性，也是 MVVM 模式的具体表现，能够在数据发生变化的时候自动监听并更新视图，同时也可以在用户交互式图改变数据时被监测到自动更新状态</p>
+<ol start="12">
+<li><p>在 v-model 绑定变量, 业务需求: 对用户输入进行限制, 只能输入英文字母, 其他字符过滤。 </p>
+</li>
+<li><p>计算属性 set 方法里面写什么, get里面写什么, 计算属性使用场景，面试官表示刚刚例子不用 v-model 会更好一些, 追问set何时执行 面试官表示computed中set需要显示调用, 并非get执行时就会执行，再次追问何时执行。</p>
+</li>
+</ol>
+<blockquote>
+</blockquote>
+<ul>
+<li><p>get 中写如何计算出属性的值，类似读取，展示用逻辑</p>
+</li>
+<li><p>set 方法里写如何响应属性被赋值时的处理，比如更新底层数据</p>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">// Vue 2</span></span><br><span class="line"></span><br><span class="line"><span class="attr">computed</span>: &#123;</span><br><span class="line"></span><br><span class="line">  <span class="attr">fullName</span>: &#123;</span><br><span class="line"></span><br><span class="line">    <span class="title function_">get</span>(<span class="params"></span>) &#123;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="property">firstName</span> + <span class="string">&#x27; &#x27;</span> + <span class="variable language_">this</span>.<span class="property">lastName</span>;</span><br><span class="line"></span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    <span class="title function_">set</span>(<span class="params">newValue</span>) &#123;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">const</span> names = newValue.<span class="title function_">split</span>(<span class="string">&#x27; &#x27;</span>)</span><br><span class="line"></span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">firstName</span> = names[<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">lastName</span> = names[<span class="number">1</span>] || <span class="string">&#x27;&#x27;</span></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>只有计算属性被显示赋值的时候才会执行 set（不会自动和 v-model 表单双向绑定，必须要要显示的赋值才可以）</li>
+</ul>
+<blockquote>
+</blockquote>
+<ol>
+<li>v-model可以拆解成什么东西</li>
+</ol>
+<blockquote>
+<p>v-model 知识语法糖而已，具体可以拆解为属性绑定和事件监听</p>
+</blockquote>
+<p>回答input中, checkbox中(追问checkbox, 回答input表单常用方式)</p>
+<blockquote>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;input</span><br><span class="line"></span><br><span class="line">  :value=<span class="string">&quot;msg&quot;</span></span><br><span class="line"></span><br><span class="line">  @input=<span class="string">&quot;msg = $event.target.value&quot;</span></span><br><span class="line"></span><br><span class="line">/&gt;</span><br><span class="line"></span><br><span class="line">:value 用于绑定msg的值到输入框中（绑定值）</span><br><span class="line"></span><br><span class="line">@input 用于在输入变化时，把新值赋给变量msg（监听输入变化）</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+</blockquote>
+<ol>
+<li>v-for中为什么要使用key</li>
+</ol>
+<blockquote>
+<p>vue 在更行列表的时候默认会尝试复用已有的 dom 节点。</p>
+</blockquote>
+<p>因为key的作用就是dom元素的唯一标识，能够在更新虚拟dom时，更准确更快速的查找到列表项的变化并更新。避免不必要的dom渲染同时也能够避免潜在的bug（渲染错误-列表顺序变化，复用了之前的节点，容易出现新旧数据错位的情况）</p>
+<ol>
+<li>ElementUI中的组件&#x2F; 自己封装的自定义组件是怎么支持v-model的, 不需要暴露给其他人使用, 他人使用时v-model绑定变量即可</li>
+</ol>
+<blockquote>
+</blockquote>
+<ul>
+<li>vue2</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;!-- 子组件 <span class="title class_">MyInput</span>.<span class="property">vue</span> --&gt;</span><br><span class="line"></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"></span></span><br><span class="line"><span class="language-xml">  <span class="tag">&lt;<span class="name">input</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml"></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">    <span class="attr">:value</span>=<span class="string">&quot;value&quot;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml"></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">    @<span class="attr">input</span>=<span class="string">&quot;$emit(&#x27;input&#x27;, $event.target.value)&quot;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml"></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">  /&gt;</span></span></span><br><span class="line"><span class="language-xml"></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">  <span class="attr">props</span>: [<span class="string">&#x27;value&#x27;</span>]</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">&#125;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>vue3 </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">本质拆解为</span><br><span class="line"></span><br><span class="line">&lt;my-comp :modelValue=<span class="string">&quot;foo&quot;</span> @<span class="attr">update</span>:modelValue=<span class="string">&quot;foo = $event&quot;</span> /&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;!-- 子组件 <span class="title class_">MyInput</span>.<span class="property">vue</span> --&gt;</span><br><span class="line"></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"></span></span><br><span class="line"><span class="language-xml">  <span class="tag">&lt;<span class="name">input</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml"></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">    <span class="attr">:value</span>=<span class="string">&quot;modelValue&quot;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml"></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">    @<span class="attr">input</span>=<span class="string">&quot;$emit(&#x27;update:modelValue&#x27;, $event.target.value)&quot;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml"></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">  /&gt;</span></span></span><br><span class="line"><span class="language-xml"></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">script</span> <span class="attr">setup</span>&gt;</span><span class="language-javascript"></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"><span class="title function_">defineProps</span>([<span class="string">&#x27;modelValue&#x27;</span>])</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"><span class="title function_">defineEmits</span>([<span class="string">&#x27;update:modelValue&#x27;</span>])</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+</blockquote>
+<ol>
+<li>插槽是解决什么问题的 有几种插槽 ElementUI中哪些组件用到了作用域插槽</li>
+</ol>
+<p>解决组件的分发和复用问题。</p>
+<p>具名插槽，默认插槽，作用域插槽</p>
+<p>el-table，el-tree，el-select，el-dropdown</p>
+<ol>
+<li>Vue中的keep-alive</li>
+</ol>
+<p>当视图切换时，离开的视图组乐意缓存，切换回来时直接复用被其包括的组件能够被缓存，存在两个钩子函数actived（激活状态），deactived（停用状态）。属性，include，exclude，max。</p>
+<ol start="2">
+<li>Vue生命周期 父组件和子组件的创建阶段和挂载阶段, 生命周期执行顺序(排序)</li>
+</ol>
+<p>   挂在时先挂在父组件，销毁时先销毁子组件onMounted父组件-&gt;onMounted子组件-&gt;onDestroed子组件-&gt;onDestroed父组件</p>
+<ol start="3">
+<li>组件之间通信方式</li>
+</ol>
+<ul>
+<li><p>props，$emit</p>
+</li>
+<li><p>事件总线</p>
+</li>
+<li><p>vuex</p>
+</li>
+<li><p>provide&#x2F;inject</p>
+</li>
+</ul>
+<ol start="4">
+<li>你这两个项目在部署的时候是如何部署的?</li>
+</ol>
+<p>   租了一个云服务器，然后把前端打包好的静态资源上传到服务器上。</p>
+<ol start="5">
+<li>前端打包好的静态资源是托管在哪里的服务器,用的什么服务器,为什么访问IP和端口就能把静态资源调用起来</li>
+</ol>
+<ul>
+<li>当静态资源部署到服务器后，服务器会配置一个<strong>静态文件服务路径</strong>，将打包后的 <code>dist/</code> 或 <code>build/</code> 目录映射到某个 URL 路径（通常是根路径 <code>/</code>）。</li>
+</ul>
+<pre><code>例如 Nginx 配置：
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">  server &#123;</span><br><span class="line"></span><br><span class="line">  listen <span class="number">80</span>;</span><br><span class="line"></span><br><span class="line">  server_name your-domain.<span class="property">com</span>;</span><br><span class="line"></span><br><span class="line">  </span><br><span class="line"></span><br><span class="line">  location / &#123;</span><br><span class="line"></span><br><span class="line">      root /path/to/your/dist;</span><br><span class="line"></span><br><span class="line">      index index.<span class="property">html</span>;</span><br><span class="line"></span><br><span class="line">      try_files $uri $uri/ /index.<span class="property">html</span>;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+这样当防卫对应的ip和端口时就可以访问到我这台服务器的对应文件中的html文件，浏览器加载 HTML 文件后再去请求其中的 css ，js 等静态文件。
+</code></pre>
+<ul>
+<li>腾讯当轻量级服务器，访问对应的ip能够访问到我的服务器上，端口对应我启动服务的端口。</li>
+</ul>
+<p> SSE 是做什么的 现实中 SSE 的应用领域</p>
+<pre><code>是一种**服务器向浏览器单向推送数据**的技术，基于 HTTP 协议，使用简单的事件流格式。
+
+能够自动尝试重连。
+
+应用领域：一些实时消息的推送，比如微博关注的新动态提醒，在线用户列表更行，还有一些文档协作类的实时光标位置之类的都属于sse吧。
+</code></pre>
+<ol start="7">
+<li><p>Websocket 和 SSE 有什么区别,为什么AI应用要使用SSE, 而不是Websocket</p>
+<ul>
+<li><p><strong>协议简单，开发成本低</strong></p>
+<ul>
+<li><p>SSE基于HTTP，无需额外协议升级</p>
+</li>
+<li><p>AI应用主要是<strong>单向数据流</strong>（模型→用户），SSE天然匹配</p>
+</li>
+</ul>
+</li>
+<li><p>流式响应更自然</p>
+<ul>
+<li><p>SSE天然支持流式输出，无需复杂的流控制</p>
+</li>
+<li><p>Websocket需要手动实现流处理</p>
+</li>
+</ul>
+</li>
+<li><p><strong>自动重连</strong></p>
+<ul>
+<li><p>SSE浏览器自动重试</p>
+</li>
+<li><p>Websocket需客户端实现重连逻辑</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>js判断数组类型</p>
+</li>
+</ol>
+<ul>
+<li><p>instanceof</p>
+</li>
+<li><p>typeof判断不了</p>
+</li>
+<li><p>Array.isArray()</p>
+</li>
+<li><p>.<strong>proto</strong> &#x3D;&#x3D;&#x3D; Array.protoType</p>
+</li>
+<li><p>Object.prototype.toString.call()</p>
+</li>
+</ul>
+<ol start="9">
+<li>前端的数据存储有哪些 这些存储方式有什么区别（localStorage，sessionStorage，session，cookie）</li>
+</ol>
+<p>| 特性         | Cookie                 | localStorage   | sessionStorage | Session        |</p>
+<p>| ———— | ———————- | ————– | ————– | ————– |</p>
+<p>| <strong>存储位置</strong> | 浏览器                 | 浏览器         | 浏览器         | 服务端         |</p>
+<p>| <strong>大小限制</strong> | 4KB                    | 5-10MB         | 5-10MB         | 无限制         |</p>
+<p>| <strong>生命周期</strong> | 可设置                 | 永久           | 标签页级       | 会话级         |</p>
+<p>| <strong>HTTP请求</strong> | 自动携带               | 不携带         | 不携带         | 通过Cookie关联 |</p>
+<p>| <strong>安全性</strong>   | 低                     | 中             | 中             | 高             |</p>
+<p>| <strong>适用场景</strong> | 身份验证、跟踪用户行为 | 持久化数据存储 | 临时数据存储   | 会话状态管理   |</p>
+<ol start="10">
+<li><p>JS 有几种声明变量的方法？ </p>
+<p>var、let、const 有什么区别？</p>
+<p>var 声明的变量存在变量提升，let 和 const 不存在变量提升。</p>
+<p>var 声明的变量可以重复声明，let 和 const 不可以重复声明。</p>
+<p>var 声明的变量可以在全局作用域和函数作用域中使用，let 和 const 声明的变量只能在块级作用域中使用。</p>
+<p>const 声明的变量不可以更改</p>
+</li>
+<li><p>什么是块级作用域？</p>
+</li>
+</ol>
+<p>  在函数或者某个花括号内声明的变量只能在这个区域内使用，这就是块级作用域</p>
+<ol start="12">
+<li><p>ES6 之前是否有块级作用域？如何用函数作用域模拟块级作用域？ </p>
+<p>没有块级作用域</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">(<span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> tmp = <span class="string">&#x27;只在 IIFE 内有效&#x27;</span>;</span><br><span class="line"></span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(tmp); <span class="comment">// tmp</span></span><br><span class="line"></span><br><span class="line">&#125;)();</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(tmp);   <span class="comment">// ReferenceError</span></span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+</ol>
+<p>  如上，包裹在立即执行函数中即可</p>
+<ol start="13">
+<li>IIFE 的作用是什么？有什么优缺点？</li>
+</ol>
+<ul>
+<li><p>作用：</p>
+<ul>
+<li><p>创建独立作用域，避免全局变量污染  </p>
+</li>
+<li><p>在 ES6 之前模拟块级作用域  </p>
+</li>
+<li><p>早期模块化雏形：返回公共 API，隐藏私有变量</p>
+</li>
+</ul>
+</li>
+<li><p>优点  </p>
+<ul>
+<li><p>立即执行，无需显式调用  </p>
+</li>
+<li><p>隔离变量，防止命名冲突  </p>
+</li>
+<li><p>压缩友好（形参可重命名</p>
+</li>
+</ul>
+</li>
+<li><p>缺点  </p>
+<ul>
+<li><p>调试困难（栈信息匿名）  </p>
+</li>
+<li><p>无法复用，只能执行一次  </p>
+</li>
+<li><p>语法冗长，ES6 块级作用域&#x2F;模块普及后已很少使用</p>
+</li>
+</ul>
+</li>
+</ul>
+<ol start="14">
+<li>Promise 有哪些常用方法？</li>
+</ol>
+<h4 id="静态方法"><a href="#静态方法" class="headerlink" title="静态方法"></a>静态方法</h4><ul>
+<li><p><code>Promise.resolve(value)</code> 立即返回一个已成功的 Promise  </p>
+</li>
+<li><p><code>Promise.reject(reason)</code> 立即返回一个已失败的 Promise  </p>
+</li>
+<li><p><code>Promise.all(iterable)</code> 等待所有成功，任一失败即整体失败  </p>
+</li>
+<li><p><code>Promise.allSettled(iterable)</code> 等待所有完成，结果数组包含每个 Promise 的状态与值&#x2F;原因  </p>
+</li>
+<li><p><code>Promise.race(iterable)</code> 返回第一个落定（成功或失败）的 Promise  </p>
+</li>
+<li><p><code>Promise.any(iterable)</code> 返回第一个成功的 Promise；全部失败才整体失败</p>
+</li>
+</ul>
+<h4 id="实例方法"><a href="#实例方法" class="headerlink" title="实例方法"></a>实例方法</h4><ul>
+<li><p><code>p.then(onFulfilled, onRejected)</code> 注册成功&#x2F;失败回调，返回新 Promise  </p>
+</li>
+<li><p><code>p.catch(onRejected)</code> 捕获错误，等价于 <code>then(null, onRejected)</code>  </p>
+</li>
+<li><p><code>p.finally(onFinally)</code> 无论成功失败都会执行，用于清理操作</p>
+</li>
+</ul>
+<ol start="15">
+<li><p>Promise.all 的作用是什么？</p>
+<p>见上</p>
+</li>
+</ol>
+<ul>
+<li><p>如果其中一个 Promise 失败，其他 Promise 的结果能否拿到？ </p>
+<ul>
+<li>一个失败则整体立即失败，拿不到其他已经成功的结果（ allSettled 可以拿到全部的状态）</li>
+</ul>
+</li>
+</ul>
+<ol start="16">
+<li><p>如何实现无论成功失败都拿到所有 Promise 的结果？</p>
+<p>使用allSettled可以，results是一个数组</p>
+</li>
+<li><p>Promise.race 的应用场景是什么？</p>
+<ul>
+<li>可以用于异步操作设置超时，比如：</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">const</span> timeout = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">_, reject</span>) =&gt;</span> &#123;</span><br><span class="line"></span><br><span class="line">  <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> <span class="title function_">reject</span>(<span class="keyword">new</span> <span class="title class_">Error</span>(<span class="string">&#x27;请求超时&#x27;</span>)), <span class="number">1000</span>);</span><br><span class="line"></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="title class_">Promise</span>.<span class="title function_">race</span>([<span class="title function_">fetchData</span>(), timeout])</span><br><span class="line"></span><br><span class="line">  .<span class="title function_">then</span>(<span class="function"><span class="params">result</span> =&gt;</span> <span class="variable language_">console</span>.<span class="title function_">log</span>(result))</span><br><span class="line"></span><br><span class="line">  .<span class="title function_">catch</span>(<span class="function"><span class="params">error</span> =&gt;</span> <span class="variable language_">console</span>.<span class="title function_">error</span>(error));</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>同时发起多个功能相同的请求，取响应最快的结果</li>
+</ul>
+</li>
+<li><p>async&#x2F;await 和 Promise 的关系？ </p>
+<p>async&#x2F;await 是 Promise 的语法糖形式，使得异步代码更像同步代码，方便使用和维护</p>
+</li>
+<li><p>async&#x2F;await 异常捕获有几种方式？</p>
+</li>
+</ol>
+<ul>
+<li><p>try&#x2F;catch</p>
+</li>
+<li><p>.catch</p>
+</li>
+<li><p>全局错误监听器</p>
+</li>
+</ul>
+<ol start="3">
+<li><p>await 等待的是什么？</p>
+<p>等待一个 promise 对象（可等待对象，待有 then 方法的对象）</p>
+<p>当遇到 await 时，会暂停当前函数的执行，把后续代码注册为该对象的 then 回调，直到状态落定再继续执行。</p>
+<p>对于普通函数或者同步值则立即包装为已经解决的 promise 对象</p>
+</li>
+<li><p>为什么 async&#x2F;await 可以写成同步风格？</p>
+</li>
+<li><p>for 循环和 forEach 的区别？ </p>
+<ul>
+<li><p>for 可中断，forEach 不可（只能抛出异常进行中断处理）</p>
+</li>
+<li><p>for await 会顺序等待，另一个不会，全部并发执行</p>
+</li>
+<li><p>for 返回值 无，forEach 始终 undefine</p>
+</li>
+<li><p>for 快</p>
+</li>
+</ul>
+</li>
+<li><p>for 循环中修改索引是否有效？</p>
+<p>有效，会造成混乱或者死循环等未知错误</p>
+</li>
+<li><p>在网页中怎么发一个接口请求</p>
+</li>
+</ol>
+<p>   XMLHttpRequest</p>
+<p>   fetch</p>
+<p>   axios</p>
+<p>简历中提到了Node.js，讲讲Node.js</p>
+<p><font style="color:#1DC0C9;">Node.js 是一个基于 Chrome V8 引擎的 JavaScript 运行时环境，让 JavaScript 能脱离浏览器在服务端运行。它的核心价值是用 JavaScript 实现全栈开发，并通过独特的设计解决了高并发场景下的性能问题。</font></p>
+<p>Node.js怎么在本地运行</p>
+<p><font style="color:#1DC0C9;">下载node 环境即可在本地运行</font></p>
+<p>为什么需要Node.js，在浏览器运行也可以啊</p>
+<p><font style="color:#1DC0C9;">浏览器中的 JavaScript 受限于沙盒环境，只能操作客户端（如页面交互、简单网络请求），无法直接访问文件、系统资源或底层网络（如 TCP、数据库）。而 Node.js 是服务端 JavaScript 运行环境，它突破浏览器限制，提供文件读写、数据库操作、高并发网络通信等服务端核心能力；同时凭借“单线程+事件驱动”模型高效处理 I&#x2F;O 密集型场景（如 API 接口、实时聊天），并通过统一前后端技术栈（JS 全栈）降低开发成本。简言之：浏览器 JS 管“用户界面”，Node.js 管“服务逻辑”，两者互补，Node.js 让 JS 从客户端脚本升级为全栈开发工具。</font></p>
+<p>Node.js怎么实现接收文件，写入服务器的操作</p>
+<p><font style="color:#1DC0C9;">在 Node.js 中接收并写入文件，常用 </font><code>&lt;font style=&quot;color:#1DC0C9;&quot;&gt;Express + multer&lt;/font&gt;</code><font style="color:#1DC0C9;">方案。核心步骤：</font></p>
+<ol>
+<li><font style="color:#1DC0C9;">前端用 </font><code>&lt;font style=&quot;color:#1DC0C9;&quot;&gt;&lt;form enctype=&quot;multipart/form-data&quot;&gt;&lt;/font&gt;</code><font style="color:#1DC0C9;">提交文件；</font></li>
+<li><font style="color:#1DC0C9;">后端通过 </font><code>&lt;font style=&quot;color:#1DC0C9;&quot;&gt;multer&lt;/font&gt;</code><font style="color:#1DC0C9;">中间件解析 </font><code>&lt;font style=&quot;color:#1DC0C9;&quot;&gt;multipart&lt;/font&gt;</code><font style="color:#1DC0C9;">请求，配置存储路径和文件名；</font></li>
+<li><font style="color:#1DC0C9;">文件通过流写入服务器指定目录（如 </font><code>&lt;font style=&quot;color:#1DC0C9;&quot;&gt;uploads&lt;/font&gt;</code><font style="color:#1DC0C9;">）。</font></li>
+</ol>
+<p><font style="color:#1DC0C9;">关键点：</font><code>&lt;font style=&quot;color:#1DC0C9;&quot;&gt;multer&lt;/font&gt;</code><font style="color:#1DC0C9;">处理文件上传，</font><code>&lt;font style=&quot;color:#1DC0C9;&quot;&gt;diskStorage&lt;/font&gt;</code><font style="color:#1DC0C9;">自定义存储逻辑，确保文件高效写入。</font></p>
+<p>Vue3响应式</p>
+<p><font style="color:#1DC0C9;">过 </font><code>&lt;font style=&quot;color:#1DC0C9;&quot;&gt;ref&lt;/font&gt;</code><font style="color:#1DC0C9;">（基本类型&#x2F;对象）和 </font><code>&lt;font style=&quot;color:#1DC0C9;&quot;&gt;reactive&lt;/font&gt;</code><font style="color:#1DC0C9;">（对象）两个 API 实现数据响应。</font><code>&lt;font style=&quot;color:#1DC0C9;&quot;&gt;Proxy&lt;/font&gt;</code><font style="color:#1DC0C9;">能拦截对象所有操作（包括属性增删、数组索引修改），配合依赖收集（</font><code>&lt;font style=&quot;color:#1DC0C9;&quot;&gt;Track&lt;/font&gt;</code><font style="color:#1DC0C9;">）和触发更新（</font><code>&lt;font style=&quot;color:#1DC0C9;&quot;&gt;Trigger&lt;/font&gt;</code><font style="color:#1DC0C9;">）机制，实现更高效、全面的响应式系统（通过套着对象的代理对象来拦截对属性的操作）</font></p>
+<p>ref和reactive的区别</p>
+<p><font style="color:#1DC0C9;">ref：用于基本类型（如 </font><code>&lt;font style=&quot;color:#1DC0C9;&quot;&gt;string&lt;/font&gt;</code><font style="color:#1DC0C9;">、</font><code>&lt;font style=&quot;color:#1DC0C9;&quot;&gt;number&lt;/font&gt;</code><font style="color:#1DC0C9;">）或对象，通过 </font><code>&lt;font style=&quot;color:#1DC0C9;&quot;&gt;.value&lt;/font&gt;</code><font style="color:#1DC0C9;">访问&#x2F;修改值（对象本质是 </font><code>&lt;font style=&quot;color:#1DC0C9;&quot;&gt;Proxy&lt;/font&gt;</code><font style="color:#1DC0C9;">包装的 </font><code>&lt;font style=&quot;color:#1DC0C9;&quot;&gt;RefImpl&lt;/font&gt;</code><font style="color:#1DC0C9;">对象）。</font></p>
+<p><font style="color:#1DC0C9;">reactive：仅用于对象（引用类型），直接访问属性（无需 </font><code>&lt;font style=&quot;color:#1DC0C9;&quot;&gt;.value&lt;/font&gt;</code><font style="color:#1DC0C9;">），底层通过 </font><code>&lt;font style=&quot;color:#1DC0C9;&quot;&gt;Proxy&lt;/font&gt;</code><font style="color:#1DC0C9;">拦截所有操作。</font></p>
+<p>Vue中的setup是什么</p>
+<p><font style="color:#1DC0C9;">是组合式api的核心入口函数，用于</font><font style="color:#1DC0C9;">在组件初始化阶段集中管理状态、逻辑和生命周期。</font></p>
+<p><code>&lt;font style=&quot;color:#1DC0C9;&quot;&gt;setup&lt;/font&gt;</code><font style="color:#1DC0C9;">在组件生命周期的 </font><code>&lt;font style=&quot;color:#1DC0C9;&quot;&gt;beforeCreate&lt;/font&gt;</code><font style="color:#1DC0C9;">和 </font><code>&lt;font style=&quot;color:#1DC0C9;&quot;&gt;created&lt;/font&gt;</code><font style="color:#1DC0C9;">之间执行</font></p>
+<p>Proxy 包装对象是什么</p>
+<p><font style="color:#1DC0C9;">Proxy 包装对象是 ES6 提供的“对象代理器”，通过 </font><code>&lt;font style=&quot;color:#1DC0C9;&quot;&gt;new Proxy(target, handler)&lt;/font&gt;</code><font style="color:#1DC0C9;">创建，表面与原对象（</font><code>&lt;font style=&quot;color:#1DC0C9;&quot;&gt;target&lt;/font&gt;</code><font style="color:#1DC0C9;">）行为一致，但所有操作（如属性访问、修改、删除）会被 </font><code>&lt;font style=&quot;color:#1DC0C9;&quot;&gt;handler&lt;/font&gt;</code><font style="color:#1DC0C9;">中定义的拦截方法（如 </font><code>&lt;font style=&quot;color:#1DC0C9;&quot;&gt;get&lt;/font&gt;</code><font style="color:#1DC0C9;">、</font><code>&lt;font style=&quot;color:#1DC0C9;&quot;&gt;set&lt;/font&gt;</code><font style="color:#1DC0C9;">）自定义处理。它像一个“透明包装层”，实际操作会转发到原对象，但行为由 </font><code>&lt;font style=&quot;color:#1DC0C9;&quot;&gt;handler&lt;/font&gt;</code><font style="color:#1DC0C9;">控制。</font></p>
+<p>什么是组合式API</p>
+<p><font style="color:#1DC0C9;">组合式 API 是 Vue3 推出的基于函数的 API 设计模式，替代了 Vue2 的选项式 API（如 </font><code>&lt;font style=&quot;color:#1DC0C9;&quot;&gt;data&lt;/font&gt;</code><font style="color:#1DC0C9;">、</font><code>&lt;font style=&quot;color:#1DC0C9;&quot;&gt;methods&lt;/font&gt;</code><font style="color:#1DC0C9;">）。它通过“按逻辑组织代码”而非“按选项类型拆分”，允许开发者将相关状态、方法和生命周期封装为可复用的函数（组合函数），实现更灵活的逻辑复用、更清晰的代码结构和更强大的类型支持。</font></p>
+<p><font style="color:#1DC0C9;">选项式API和组合式API的区别，组合式API的优点</font></p>
+<p>Vue的生命周期钩子，有什么用</p>
+<p><font style="color:#1DC0C9;">Vue 的生命周期钩子是组件在创建、更新、销毁过程中自动触发的“事件回调”，开发者可在这些钩子中插入自定义逻辑（如数据请求、DOM 操作、资源释放）。它像组件的“生命日记”，记录了组件从生到死的完整过程，确保逻辑在正确时机执行。用于在组件渲染的各个阶段进行一些异步操作，确保组件行为符合预期</font></p>
+<p>什么是keepalive</p>
+<p><font style="color:#1DC0C9;">用于在切换视图时，缓存组件，避免重新渲染，从而提升性能，有actived和deactived两个钩子函数，可以用include和exlude属性来决定缓存那些组件</font></p>
+<p>如何对vue代码进行测试，非人为测试</p>
+<p><font style="color:#1DC0C9;">单元测试：单个函数，组件或逻辑模块，确保独立运行正确（Jest，Vitest）</font></p>
+<p><font style="color:#1DC0C9;">集成测试：关注多个模块或组件之间的交互逻辑，常用工具与上述一致</font></p>
+<p><font style="color:#1DC0C9;">端到端测试：E2E 测试验证完整业务流程（如登录、下单），模拟用户在浏览器中的真实操作。常用工具为 Cypress 或 Playwright（跨浏览器支持更好）。</font></p>
+<h1 id="业务场景"><a href="#业务场景" class="headerlink" title="业务场景:"></a>业务场景:</h1><ol>
+<li><p>三个form表单(用户基本信息, 用户工作信息, 补充信息)封装成三个组件, 被父组件引用。数据发送的接口在父组件中；三个form的数据以及各自的类型校验分别在三个表单内部。2. 父组件如何触发三个表单校验，并且在表单校验通过后拿到数据并发送.</p>
+</li>
+<li><p>form表单校验用过吗？是异步还是同步的</p>
+</li>
+</ol>
+<p><font style="color:#1DC0C9;">表单校验既可以是同步（如格式校验），也可以是异步（如接口验证）。同步校验即时反馈（如密码长度、邮箱格式），异步校验依赖外部请求（如用户名唯一性、身份证有效性），需结合业务场景选择。</font></p>
+<ol start="3">
+<li>父类如何获取form表单数据， 如何触发form表单校验</li>
+</ol>
+<p><font style="color:#1DC0C9;">在前端开发中，父组件获取子表单数据或触发表单校验，本质是通过组件通信实现</font></p>
+<p><font style="color:#1DC0C9;"></font></p>
+<h2 id="qpLYo">9月13日</h2>
+
+
+<h1 id="进阶"><a href="#进阶" class="headerlink" title="进阶"></a>进阶</h1><ol>
+<li>浏览器缓存</li>
+</ol>
+<p><font style="color:#1DC0C9;">浏览器缓存策略分为</font><strong><font style="color:#1DC0C9;">强制缓存</font></strong><font style="color:#1DC0C9;">（直接使用本地缓存，由 </font><code>&lt;font style=&quot;color:#1DC0C9;&quot;&gt;Cache-Control&lt;/font&gt;</code><font style="color:#1DC0C9;">&#x2F;</font><code>&lt;font style=&quot;color:#1DC0C9;&quot;&gt;Expires&lt;/font&gt;</code><font style="color:#1DC0C9;">控制）和</font><strong><font style="color:#1DC0C9;">协商缓存</font></strong><font style="color:#1DC0C9;">（需服务器确认有效性，由 </font><code>&lt;font style=&quot;color:#1DC0C9;&quot;&gt;ETag&lt;/font&gt;</code><font style="color:#1DC0C9;">&#x2F;</font><code>&lt;font style=&quot;color:#1DC0C9;&quot;&gt;Last-Modified&lt;/font&gt;</code><font style="color:#1DC0C9;">控制）。缓存位置包括</font><strong><font style="color:#1DC0C9;">磁盘缓存（Disk Cache）</font></strong><font style="color:#1DC0C9;">（硬盘存储，容量大、生命周期长）和</font><strong><font style="color:#1DC0C9;">内存缓存（Memory Cache）</font></strong><font style="color:#1DC0C9;">（内存存储，速度快、易丢失）。磁盘与内存缓存的区别体现在存储介质、速度、容量和生命周期上，浏览器根据资源类型、访问频率、生命周期等因素决定存储位置，以平衡速度与资源利用率。</font></p>
+<p><font style="color:#1DC0C9;"></font></p>
+<p><font style="color:#1DC0C9;">详细解释：</font></p>
+<p><font style="color:#1DC0C9;">强缓存：浏览器直接用本地缓存，不向服务器发送请求</font></p>
+<p><font style="color:#1DC0C9;">触发调节，响应头中的 cache-control 来说明缓存有效期</font></p>
+<p><font style="color:#1DC0C9;">协商缓存：缓存过期之后，浏览器携带缓存标识向服务器验证资源是否更新，没更新就用本地缓存。</font><font style="color:#1DC0C9;">通过响应头中的 </font><code>&lt;font style=&quot;color:#1DC0C9;&quot;&gt;ETag&lt;/font&gt;</code><font style="color:#1DC0C9;">&#x2F;</font><code>&lt;font style=&quot;color:#1DC0C9;&quot;&gt;If-None-Match&lt;/font&gt;</code><font style="color:#1DC0C9;">或 </font><code>&lt;font style=&quot;color:#1DC0C9;&quot;&gt;Last-Modified&lt;/font&gt;</code><font style="color:#1DC0C9;">&#x2F;</font><code>&lt;font style=&quot;color:#1DC0C9;&quot;&gt;If-Modified-Since&lt;/font&gt;</code><font style="color:#1DC0C9;">验证。</font></p>
+<p><font style="color:#1DC0C9;"></font></p>
+<p><font style="color:#1DC0C9;"></font></p>
+<ol start="2">
+<li>追问磁盘缓存和内存缓存区别，为什么有的缓存在磁盘有的缓存在内存。</li>
+</ol>
+<p><font style="color:#1DC0C9;">磁盘缓存：读取速度慢，生命周期长（可能跨标签页，跨浏览器重启，直到缓存策略过期或手动清理），容量大，适合大文件，低频访问但长期需要的资源</font></p>
+<p><font style="color:#1DC0C9;">内存缓存：读取速度快，容量小，生命周期短（关闭标签页之后可能就释放，浏览器会主动清理），适合高频访问的小文件，比如当前文件的HTML，css，js</font></p>
+<ol start="3">
+<li>如何手动修改请求缓存位置</li>
+</ol>
+<p><font style="color:#1DC0C9;">浏览器</font><strong><font style="color:#1DC0C9;">默认自动管理缓存位置</font></strong><font style="color:#1DC0C9;">（磁盘&#x2F;内存），开发者无法直接通过API或配置手动指定资源的缓存位置。但可通过调整资源类型、缓存策略或使用Service Worker间接影响缓存位置（如高频小资源更可能存内存，大文件更可能存磁盘）。</font></p>
+<p><font style="color:#1DC0C9;">通过设置cache-control头可以间接影响缓存位置：</font></p>
+<p><font style="color:#1DC0C9;">详细：</font></p>
+<p><font style="color:#1DC0C9;">浏览器会更具资源以及内存空间自动优化选择合适的缓存位置。</font></p>
+<ol start="4">
+<li>资源缓存时间怎么设置的</li>
+</ol>
+<p><font style="color:#1DC0C9;">通过HTTP响应头来设置，核心字段包括</font></p>
+<p><font style="color:#1DC0C9;">强缓存：cache-control 字段：max-age &#x3D; 秒数</font></p>
+<p><font style="color:#1DC0C9;">协商缓存辅助：Last-Modified 最后修改时间或 ETag</font></p>
+<ol start="2">
+<li><p>前端代码部署在哪里？跟后端一个服务器还是分开的；</p>
+<ol>
+<li><font style="color:#1DC0C9;">前端和后端代码可以部署在一起也可以分开部署。</font></li>
+<li><font style="color:#1DC0C9;">部署在同一个服务器的话，可以通过不同路径或不同端口来隔离。适用于小型项目</font></li>
+<li><font style="color:#1DC0C9;">可以部署在不同的服务器使用不同的域名。</font></li>
+<li><font style="color:#1DC0C9;">也可以用云原生容器化部署方案，前端代码打包为静态文件（Docker镜像），与后端服务分别封装为容器，前端Nginx，后端Spring Boot容器，通过Kubernetes 或者 Docker Compose 编排，部署在云端服务器集群</font></li>
+</ol>
+</li>
+</ol>
+<p>静态资源的缓存是怎么做的</p>
+<ol>
+<li><p><font style="color:#1DC0C9;">HTTP 缓存头，通过服务端配置响应头来控制浏览器如何缓存资源（强缓存，直接用本地缓存，协商缓存，缓存后通过</font><code>&lt;font style=&quot;color:#1DC0C9;&quot;&gt;ETag&lt;/font&gt;</code><font style="color:#1DC0C9;">&#x2F;</font><code>&lt;font style=&quot;color:#1DC0C9;&quot;&gt;Last-Modified&lt;/font&gt;</code><font style="color:#1DC0C9;">与服务器验证资源是否更新</font><font style="color:#1DC0C9;">）</font></p>
+</li>
+<li><p><font style="color:#1DC0C9;">版本化命名文件名：静态资源通过内容hash命名，确保内容变更时，文件名同步变化，</font></p>
+<ol>
+<li><font style="color:#1DC0C9;">通过前端构建工具（webpack,vite）自动根据文件内容生成哈希值</font></li>
+</ol>
+</li>
+<li><p><font style="color:#1DC0C9;">CDN缓存，将静态资源部署到内容网络分发节点，用全球边缘节点缓存资源，用户就近访问，源站配置cache-Control头，cdn节点遵循策略缓存节点</font></p>
+</li>
+<li><p><font style="color:#1DC0C9;">Service Worker 缓存</font></p>
+</li>
+<li><p>项目如何解决跨域问题？</p>
+<ol>
+<li>前端解决：配置代理，通过在.CONFIG文件中配置反向代理代理，jsonP。利用script标签无同源限制特性，只支持get请求</li>
+<li>后端解决，配置响应头允许特定源访问，允许跨域</li>
+<li>Nginx或者脚手架也可以做配置（都归为反向代理）解决，</li>
+</ol>
+</li>
+</ol>
+<p>Nginx 代理的缺点？</p>
+<p><font style="color:#01B2BC;">但存在</font><strong><font style="color:#01B2BC;">性能瓶颈</font></strong><font style="color:#01B2BC;">（高并发时资源消耗大）、</font><strong><font style="color:#01B2BC;">配置复杂度</font></strong><font style="color:#01B2BC;">（复杂场景易出错）、</font><strong><font style="color:#01B2BC;">功能限制</font></strong><font style="color:#01B2BC;">（动态处理弱于应用服务器）、</font><strong><font style="color:#01B2BC;">单点故障风险</font></strong><font style="color:#01B2BC;">（未高可用时宕机影响全局）、</font><strong><font style="color:#01B2BC;">网络依赖性强</font></strong><font style="color:#01B2BC;">（代理链路延迟&#x2F;中断影响服务）等缺点，需结合场景权衡是否使用。</font></p>
+<p>CORS 的完整流程？</p>
+<ol>
+<li><font style="color:#01B2BC;">浏览器发起跨域请求时，检查是否为“简单请求”；</font></li>
+<li><font style="color:#01B2BC;">简单请求直接发送，携带</font><font style="color:#01B2BC;"> </font><code>&lt;font style=&quot;color:#01B2BC;&quot;&gt;Origin&lt;/font&gt;</code><font style="color:#01B2BC;">头；非简单请求先发送</font><font style="color:#01B2BC;"> </font><code>&lt;font style=&quot;color:#01B2BC;&quot;&gt;OPTIONS&lt;/font&gt;</code><font style="color:#01B2BC;">预检请求；</font></li>
+</ol>
+<blockquote>
+<p>origin头定义：Origin: <scheme>:&#x2F;&#x2F;<host>:<port>，协议+域名+端口</p>
+<p>简单请求定义:cors机制中最基础的跨域亲求类型，减少不必要的预检请求开销，提升跨域请求效率。简单请求需要满足一下条件：</p>
+<ol>
+<li>只能是Get，HEAD，Post，请求头只允许有一下字段</li>
+</ol>
+<ul>
+<li><code>&lt;font style=&quot;color:rgb(0, 0, 0);&quot;&gt;Accept&lt;/font&gt;</code><font style="color:rgb(0, 0, 0);">（客户端接受的 MIME 类型，如</font><font style="color:rgb(0, 0, 0);"> </font><code>&lt;font style=&quot;color:rgb(0, 0, 0);&quot;&gt;text/html&lt;/font&gt;</code><font style="color:rgb(0, 0, 0);">）；</font></li>
+<li><code>&lt;font style=&quot;color:rgb(0, 0, 0);&quot;&gt;Accept-Language&lt;/font&gt;</code><font style="color:rgb(0, 0, 0);">（客户端接受的语言，如</font><font style="color:rgb(0, 0, 0);"> </font><code>&lt;font style=&quot;color:rgb(0, 0, 0);&quot;&gt;zh-CN&lt;/font&gt;</code><font style="color:rgb(0, 0, 0);">）；</font></li>
+<li><code>&lt;font style=&quot;color:rgb(0, 0, 0);&quot;&gt;Content-Language&lt;/font&gt;</code><font style="color:rgb(0, 0, 0);">（请求体的语言，如</font><font style="color:rgb(0, 0, 0);"> </font><code>&lt;font style=&quot;color:rgb(0, 0, 0);&quot;&gt;en-US&lt;/font&gt;</code><font style="color:rgb(0, 0, 0);">）；</font></li>
+<li><code>&lt;font style=&quot;color:rgb(0, 0, 0);&quot;&gt;Content-Type&lt;/font&gt;</code><font style="color:rgb(0, 0, 0);">（请求体类型，仅允许以下三种值）：</font><ul>
+<li><code>&lt;font style=&quot;color:rgb(0, 0, 0);&quot;&gt;application/x-www-form-urlencoded&lt;/font&gt;</code><font style="color:rgb(0, 0, 0);">（表单提交，如</font><font style="color:rgb(0, 0, 0);"> </font><code>&lt;font style=&quot;color:rgb(0, 0, 0);&quot;&gt;name=张三&amp;age=20&lt;/font&gt;</code><font style="color:rgb(0, 0, 0);">）；</font></li>
+<li><code>&lt;font style=&quot;color:rgb(0, 0, 0);&quot;&gt;multipart/form-data&lt;/font&gt;</code><font style="color:rgb(0, 0, 0);">（文件上传，如表单含</font><font style="color:rgb(0, 0, 0);"> </font><code>&lt;font style=&quot;color:rgb(0, 0, 0);&quot;&gt;file&lt;/font&gt;</code><font style="color:rgb(0, 0, 0);">类型输入）；</font></li>
+<li><code>&lt;font style=&quot;color:rgb(0, 0, 0);&quot;&gt;text/plain&lt;/font&gt;</code><font style="color:rgb(0, 0, 0);">（纯文本，如 </font><code>&lt;font style=&quot;color:rgb(0, 0, 0);&quot;&gt;hello world&lt;/font&gt;</code><font style="color:rgb(0, 0, 0);">）。</font></li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<ol start="3">
+<li><font style="color:#01B2BC;">服务器响应中携带 CORS 相关头（如</font><font style="color:#01B2BC;"> </font><code>&lt;font style=&quot;color:#01B2BC;&quot;&gt;Access-Control-Allow-Origin&lt;/font&gt;</code><font style="color:#01B2BC;">）；</font></li>
+<li><font style="color:#01B2BC;">浏览器</font></li>
+</ol>
+<p>●CORS 预检请求（OPTIONS）的作用？ </p>
+<p><font style="color:#01B2BC;">CORS 预检请求（OPTIONS）是浏览器在发送</font><strong><font style="color:#01B2BC;">非简单请求</font></strong><font style="color:#01B2BC;">前，向服务器发起的</font><strong><font style="color:#01B2BC;">验证性请求</font></strong><font style="color:#01B2BC;">，核心作用是确认服务器是否允许该跨域请求的实际执行。通过预检，服务器可声明允许的请求方法、请求头和源，浏览器基于此决定是否发送实际请求，避免未经授权的跨域操作</font><font style="color:rgb(0, 0, 0);">。</font></p>
+<p>●什么情况下会发 OPTIONS 请求？每个跨域请求都会发吗？</p>
+<p><font style="color:#01B2BC;">非简单请求的跨域请求才会发送</font></p>
+<p>●OPTIONS 请求检查哪些内容？</p>
+<ul>
+<li><code>&lt;font style=&quot;color:#01B2BC;&quot;&gt;Access-Control-Allow-Origin&lt;/font&gt;</code><font style="color:#01B2BC;">与请求的 </font><code>&lt;font style=&quot;color:#01B2BC;&quot;&gt;Origin&lt;/font&gt;</code><font style="color:#01B2BC;">匹配；</font></li>
+<li><code>&lt;font style=&quot;color:#01B2BC;&quot;&gt;Access-Control-Allow-Methods&lt;/font&gt;</code><font style="color:#01B2BC;">包含实际请求的方法（如</font><font style="color:#01B2BC;"> </font><code>&lt;font style=&quot;color:#01B2BC;&quot;&gt;PUT&lt;/font&gt;</code><font style="color:#01B2BC;">）；</font></li>
+<li><code>&lt;font style=&quot;color:#01B2BC;&quot;&gt;Access-Control-Allow-Headers&lt;/font&gt;</code><font style="color:#01B2BC;">包含实际请求的自定义头（如 </font><code>&lt;font style=&quot;color:#01B2BC;&quot;&gt;Authorization&lt;/font&gt;</code><font style="color:#01B2BC;">）；</font></li>
+<li><font style="color:rgb(0, 0, 0);">Access-Control-Allow-Credentials（检查是否允许带凭证）</font></li>
+</ul>
+<p>Flex 布局默认主轴方向？</p>
+<p><font style="color:#01B2BC;">x轴，水平方向</font></p>
+<p>●flex: 1 的含义？</p>
+<p><font style="color:#01B2BC;">flex-grow，flex-shrink ，flex-basis为1，1，0。代表可以在剩余空间中扩展或伸缩，每一个属性的数值越大则代表扩展或伸缩的程度越高。</font><strong><font style="color:#01B2BC;">且初始基准大小为父容器的 0%（即完全根据父容器剩余空间分配）</font></strong></p>
+<p>●flex-basis 可设置哪些值？ </p>
+<p><font style="color:#01B2BC;">auto（根据主轴方向和宽&#x2F;高），max-content（初始基准尺寸为内容可能的最大尺寸），min-content（设置为内容的最小可能尺寸），fit-content（前面两个的较小值）</font></p>
+<p>●同时设置 width 和 flex-basis 哪个优先级高？</p>
+<p><code>&lt;font style=&quot;color:#01B2BC;&quot;&gt;flex-basis&lt;/font&gt;</code><font style="color:#01B2BC;">优先于 </font><code>&lt;font style=&quot;color:#01B2BC;&quot;&gt;width&lt;/font&gt;</code><font style="color:#01B2BC;">属性（</font><code>&lt;font style=&quot;color:#01B2BC;&quot;&gt;flex-basis&lt;/font&gt;</code><font style="color:#01B2BC;">决定初始宽度，</font><code>&lt;font style=&quot;color:#01B2BC;&quot;&gt;width&lt;/font&gt;</code><font style="color:#01B2BC;">仅在 </font><code>&lt;font style=&quot;color:#01B2BC;&quot;&gt;flex-basis: auto&lt;/font&gt;</code><font style="color:#01B2BC;">时生效）；</font></p>
+<p>●max-width 和 flex-basis 的优先级？</p>
+<ul>
+<li><font style="color:#01B2BC;">若 </font><code>&lt;font style=&quot;color:#01B2BC;&quot;&gt;flex-basis&lt;/font&gt;</code><font style="color:#01B2BC;">的值 </font><strong><font style="color:#01B2BC;">≤</font></strong><font style="color:#01B2BC;"> </font><code>&lt;font style=&quot;color:#01B2BC;&quot;&gt;max-width&lt;/font&gt;</code><font style="color:#01B2BC;">：</font><code>&lt;font style=&quot;color:#01B2BC;&quot;&gt;flex-basis&lt;/font&gt;</code><font style="color:#01B2BC;">生效，</font><code>&lt;font style=&quot;color:#01B2BC;&quot;&gt;max-width&lt;/font&gt;</code><font style="color:#01B2BC;">不限制（因未超过最大值）；</font></li>
+<li><font style="color:#01B2BC;">若 </font><code>&lt;font style=&quot;color:#01B2BC;&quot;&gt;flex-basis&lt;/font&gt;</code><font style="color:#01B2BC;">的值 </font><strong><font style="color:#01B2BC;">&gt;</font></strong><font style="color:#01B2BC;"> </font><code>&lt;font style=&quot;color:#01B2BC;&quot;&gt;max-width&lt;/font&gt;</code><font style="color:#01B2BC;">：</font><code>&lt;font style=&quot;color:#01B2BC;&quot;&gt;max-width&lt;/font&gt;</code><font style="color:#01B2BC;">生效，强制元素宽度不超过其设定值，</font><code>&lt;font style=&quot;color:#01B2BC;&quot;&gt;flex-basis&lt;/font&gt;</code><font style="color:#01B2BC;">被截断。</font></li>
+</ul>
+<p>●Vue 的 v-for 是否需要 key？ </p>
+<p>最好是加上key值，用于标识唯一的dom节点，能够在列表发生变化，更新真实dom的时候避免不必要的渲染，提升性能，同时也能避免错误的渲染</p>
+<p><font style="color:#01B2BC;">Vue 的 </font><code>&lt;font style=&quot;color:#01B2BC;&quot;&gt;v-for&lt;/font&gt;</code><strong><font style="color:#01B2BC;">强烈建议为每个循环项添加唯一的 </font></strong><code>**&lt;font style=&quot;color:#01B2BC;&quot;&gt;key&lt;/font&gt;**</code><strong><font style="color:#01B2BC;">属性</font></strong><font style="color:#01B2BC;">（非强制但最佳实践）。</font><code>&lt;font style=&quot;color:#01B2BC;&quot;&gt;key&lt;/font&gt;</code><font style="color:#01B2BC;">的核心作用是帮助 Vue 高效识别列表项的唯一性，优化虚拟 DOM 的 diff 算法，避免因列表动态变化（增删、排序）导致的渲染错误或性能问题。</font></p>
+<p>●不设置 key 可能导致什么问题？除了性能问题？为什么数组会渲染错乱</p>
+<p><font style="color:rgb(0, 0, 0);">若</font><font style="color:#01B2BC;">不使用 </font><code>&lt;font style=&quot;color:#01B2BC;&quot;&gt;key&lt;/font&gt;</code><font style="color:#01B2BC;">，Vue 会默认采用“就地复用”策略：当列表项顺序变化时，Vue 会复用已有的 DOM 节点（仅更新内容），而非重新创建或移动节点。这可能导致</font><strong><font style="color:#01B2BC;">内容与位置不匹配</font></strong><font style="color:#01B2BC;">的问题。</font></p>
+<p>●能否用 index 作为 key？</p>
+<ul>
+<li><font style="color:#01B2BC;">当列表增删或排序时，索引会变化，导致 </font><code>&lt;font style=&quot;color:#01B2BC;&quot;&gt;key&lt;/font&gt;</code><font style="color:#01B2BC;">不稳定；</font></li>
+<li><font style="color:#01B2BC;">Vue 可能因索引变化误判节点需要重建（而非移动），降低性能。</font></li>
+</ul>
+<p>●React 函数组件和类组件的区别？ </p>
+<ul>
+<li><strong><font style="color:#01B2BC;">语法</font></strong><font style="color:#01B2BC;">：函数组件更简洁（无类模板）；</font></li>
+<li><strong><font style="color:#01B2BC;">状态</font></strong><font style="color:#01B2BC;">：函数组件依赖 Hooks（</font><code>&lt;font style=&quot;color:#01B2BC;&quot;&gt;useState&lt;/font&gt;</code><font style="color:#01B2BC;">&#x2F;</font><code>&lt;font style=&quot;color:#01B2BC;&quot;&gt;useEffect&lt;/font&gt;</code><font style="color:#01B2BC;">），类组件依赖</font><font style="color:#01B2BC;"> </font><code>&lt;font style=&quot;color:#01B2BC;&quot;&gt;this.state&lt;/font&gt;</code><font style="color:#01B2BC;">和生命周期；</font></li>
+<li><strong><font style="color:#01B2BC;">逻辑复用</font></strong><font style="color:#01B2BC;">：函数组件通过自定义 Hooks 实现更干净的逻辑复用；</font></li>
+</ul>
+<p>●useEffect 空依赖数组模拟哪个生命周期？</p>
+<p><font style="color:#01B2BC;">模拟了类组件中的 </font><code>**&lt;font style=&quot;color:#01B2BC;&quot;&gt;componentDidMount&lt;/font&gt;**</code><strong><font style="color:#01B2BC;">（挂载后执行）</font></strong><font style="color:#01B2BC;"> 和 </font><code>**&lt;font style=&quot;color:#01B2BC;&quot;&gt;componentWillUnmount&lt;/font&gt;**</code><strong><font style="color:#01B2BC;">（卸载前清理）</font></strong></p>
+<p>●useEffect 无依赖数组时执行时机？</p>
+<p><font style="color:#01B2BC;">回调函数会在</font><strong><font style="color:#01B2BC;">每次组件渲染完成后执行</font></strong><font style="color:#01B2BC;">（包括初始挂载、后续更新），清理函数在组件卸载时执行</font></p>
+<ol>
+<li>html渲染，遇到script标签会怎样</li>
+</ol>
+<p><font style="color:#01B2BC;">停止渲染，先去请求script标签中的js内容，执行js代码</font></p>
+<ol start="2">
+<li>async和defer有啥区别，怎么执行的</li>
+</ol>
+<p><font style="color:#01B2BC;">都是异步加载script标签中的内容。</font></p>
+<p><font style="color:#01B2BC;">async 先异步加载js，不阻塞html渲染，加载完成后立即执行js代码（可能再html渲染完成后，也可能在还没渲染完成时执行，取决于js的加载速度）</font></p>
+<p><font style="color:#01B2BC;">defer会在dom更新完成之后再加载js，而async会在</font></p>
+<p>5.跨域的表现是什么样的，发出去无响应&#x2F;压根没发?</p>
+<p><font style="color:#01B2BC;">都有可能：</font></p>
+<p><font style="color:#01B2BC;">压根没发出去：非简单请求，在发送options预检请求时，服务器未正确响应预检时，浏览器会组织实际请求的发出</font></p>
+<p><font style="color:#01B2BC;">发出无响应：简单请求发送后，服务器未正确响应CORS导致的，</font></p>
+<p><font style="color:#01B2BC;">发出被拦截：发送请求，浏览器禁止前端接收读取响应内容</font></p>
+<p>6.请求发出去以后，根据啥判断是否跨域?</p>
+<p><font style="color:#01B2BC;">同源策略，对比请求目标的协议，域名，端口，是否和当前一致</font></p>
+<ol start="7">
+<li>option请求</li>
+</ol>
+<p>发<font style="color:#01B2BC;">送一个预见请求，包括真实请求的协议，域名，端口，和请求头是否有自定义字段等</font></p>
+<p><code>&lt;font style=&quot;color:#01B2BC;&quot;&gt;OPTIONS&lt;/font&gt;</code><font style="color:#01B2BC;">方法的语义是：“</font><strong><font style="color:#01B2BC;">请告诉我，你支持哪些 HTTP 方法和请求头？</font></strong><font style="color:#01B2BC;">”。它不用于传输实际数据（通常无请求体），而是通过服务器响应获取以下信息：</font></p>
+<ul>
+<li><font style="color:#01B2BC;">服务器支持的 HTTP 方法（如</font><font style="color:#01B2BC;"> </font><code>&lt;font style=&quot;color:#01B2BC;&quot;&gt;GET&lt;/font&gt;</code><font style="color:#01B2BC;">&#x2F;</font><code>&lt;font style=&quot;color:#01B2BC;&quot;&gt;POST&lt;/font&gt;</code><font style="color:#01B2BC;">&#x2F;</font><code>&lt;font style=&quot;color:#01B2BC;&quot;&gt;PUT&lt;/font&gt;</code><font style="color:#01B2BC;">）；</font></li>
+<li><font style="color:#01B2BC;">服务器允许的请求头字段（如</font><font style="color:#01B2BC;"> </font><code>&lt;font style=&quot;color:#01B2BC;&quot;&gt;Content-Type&lt;/font&gt;</code><font style="color:#01B2BC;">&#x2F;</font><code>&lt;font style=&quot;color:#01B2BC;&quot;&gt;Authorization&lt;/font&gt;</code><font style="color:#01B2BC;">）；</font></li>
+<li><font style="color:#01B2BC;">跨域相关配置（如 </font><code>&lt;font style=&quot;color:#01B2BC;&quot;&gt;Access-Control-Allow-Origin&lt;/font&gt;</code><font style="color:#01B2BC;">）。</font></li>
+</ul>
+<h5 id="30c6ed3c"><font style="color:#01B2BC;">浏览器发送</font><font style="color:#01B2BC;"> </font>`<font style="color:#01B2BC;">OPTIONS</font>`<font style="color:#01B2BC;">预检请求</font></h5>
+<font style="color:#01B2BC;">预检请求中包含以下关键头部，告知服务器需要验证的信息：</font>
+
+<ul>
+<li><code>&lt;font style=&quot;color:#01B2BC;&quot;&gt;Origin&lt;/font&gt;</code><font style="color:#01B2BC;">：当前页面的源（协议+域名+端口）；</font></li>
+<li><code>&lt;font style=&quot;color:#01B2BC;&quot;&gt;Access-Control-Request-Method&lt;/font&gt;</code><font style="color:#01B2BC;">：实际请求将使用的方法（如</font><font style="color:#01B2BC;"> </font><code>&lt;font style=&quot;color:#01B2BC;&quot;&gt;PUT&lt;/font&gt;</code><font style="color:#01B2BC;">）；</font></li>
+<li><code>&lt;font style=&quot;color:#01B2BC;&quot;&gt;Access-Control-Request-Headers&lt;/font&gt;</code><font style="color:#01B2BC;">：实际请求将携带的自定义头（如 </font><code>&lt;font style=&quot;color:#01B2BC;&quot;&gt;Content-Type&lt;/font&gt;</code><font style="color:#01B2BC;">）。</font></li>
+<li><font style="color:#01B2BC;"></font></li>
+</ul>
+<p>8.介绍一些es6和更新的API</p>
+<ol>
+<li><font style="color:#01B2BC;">模板字符串</font></li>
+<li><font style="color:#01B2BC;">结构赋值</font></li>
+<li><font style="color:#01B2BC;">箭头函数</font></li>
+<li><font style="color:#01B2BC;">import&#x2F;export 模块化</font></li>
+<li><font style="color:#01B2BC;">类（基于原型类的语法糖）</font></li>
+<li><font style="color:#01B2BC;">let，const</font></li>
+<li><font style="color:#01B2BC;">set，Map新数据结构</font></li>
+<li><font style="color:#01B2BC;">Promise</font></li>
+<li><font style="color:#01B2BC;">Symbol 类型</font></li>
+<li><font style="color:#01B2BC;">扩展运算符</font></li>
+<li><font style="color:#01B2BC;">es2019-es2023：可选链，空值合并？？</font></li>
+</ol>
+<p>9.箭头函数和function区别</p>
+<ol>
+<li><p><font style="color:#01B2BC;">箭头函数没有自己的 this 指向，this 继承自定义时的上下文，function 取决于调用方式</font></p>
+</li>
+<li><p><font style="color:#01B2BC;">箭头函数不能作为构造函数。</font></p>
+</li>
+<li><p><font style="color:#01B2BC;">也不能被 call，apply。bind修改</font></p>
+</li>
+<li><p><font style="color:#01B2BC;">无arguments对象，不支持生成器函数</font></p>
+</li>
+<li><p>事件循环</p>
+</li>
+</ol>
+<p><font style="color:#01B2BC;">事件循环是 JavaScript 运行时（Runtime）处理</font><strong><font style="color:#01B2BC;">异步操作</font></strong><font style="color:#01B2BC;">的核心机制，其核心职责是</font><strong><font style="color:#01B2BC;">协调同步任务与异步任务的执行顺序</font></strong><font style="color:#01B2BC;">，确保代码在单线程环境下（浏览器&#x2F;Node.js）。</font></p>
+<p><font style="color:#01B2BC;">调用栈，js执行同步代码的地方，每次调用一个函数都会把当前的执行上下文压入栈顶，执行完成后，其上下文又弹出。</font></p>
+<p><font style="color:#01B2BC;">任务队列，异步任务的一个等待去，任务队列分为宏任务队列和微任务队列，当同步任务执行完且异步操作完成的时候，回把对应的回调函数放入队列等待。任务队列又分为宏任务队列和微笑任务队列。微任务的执行优先级更高</font></p>
+<p><font style="color:#01B2BC;">事件循环就是不断的检查调用栈是否未空，然后按照优先级从队列中去除任务进行执行。</font></p>
+<p><font style="color:#01B2BC;">核心顺序：</font></p>
+<ol>
+<li><font style="color:#01B2BC;">先执行调用栈中的所有同步任务；</font></li>
+<li><font style="color:#01B2BC;">调用栈清空后，检查</font><strong><font style="color:#01B2BC;">微任务队列</font></strong><font style="color:#01B2BC;">，按顺序执行所有微任务；</font></li>
+<li><font style="color:#01B2BC;">微任务队列清空后，检查</font><strong><font style="color:#01B2BC;">宏任务队列</font></strong><font style="color:#01B2BC;">，取出一个宏任务执行（浏览器通常取最早入队的宏任务，Node.js 按阶段处理）；</font></li>
+<li><font style="color:#01B2BC;">重复步骤 2~3（宏任务执行后可能产生新的微任务，需再次清空微任务队列）</font></li>
+</ol>
+<p>11.怎么利用事件循环机制，优化大量计算导致的页面卡顿问题</p>
+<p><font style="color:#01B2BC;">要利用事件循环机制优化大量计算导致的页面卡顿问题，核心思路是</font><strong><font style="color:#01B2BC;">避免主线程被长时间的同步计算阻塞</font></strong><font style="color:#01B2BC;">，通过将计算任务拆分为异步任务、利用后台线程或调整任务执行时机，让事件循环有机会处理页面渲染、用户交互等关键任务。</font></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> total = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">const</span> chunkSize = <span class="number">100000</span>; <span class="comment">// 每个小任务处理 10 万次计算</span></span><br><span class="line"><span class="keyword">const</span> totalChunks = <span class="number">10</span>; <span class="comment">// 总共有 10 个小任务</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">processChunk</span>(<span class="params">chunkIndex</span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> start = chunkIndex * chunkSize;</span><br><span class="line">  <span class="keyword">const</span> end = start + chunkSize;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = start; i &lt; end; i++) &#123;</span><br><span class="line">    total += i;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`完成第 <span class="subst">$&#123;chunkIndex + <span class="number">1</span>&#125;</span> 个小任务`</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 若未完成所有分片，继续调度下一个宏任务</span></span><br><span class="line">  <span class="keyword">if</span> (chunkIndex &lt; totalChunks - <span class="number">1</span>) &#123;</span><br><span class="line">    <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> <span class="title function_">processChunk</span>(chunkIndex + <span class="number">1</span>), <span class="number">0</span>);</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;总结果：&#x27;</span>, total);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 启动第一个分片（通过 setTimeout 加入宏任务队列）</span></span><br><span class="line"><span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> <span class="title function_">processChunk</span>(<span class="number">0</span>), <span class="number">0</span>);</span><br></pre></td></tr></table></figure>
+
+<p>12.了解requestAnimationFrame吗，他在事件循环中的位置是啥</p>
+<p><code>&lt;font style=&quot;color:#01B2BC;&quot;&gt;requestAnimationFrame&lt;/font&gt;</code><font style="color:#01B2BC;">（简称 </font><code>&lt;font style=&quot;color:#01B2BC;&quot;&gt;rAF&lt;/font&gt;</code><font style="color:#01B2BC;">）是浏览器提供的</font><strong><font style="color:#01B2BC;">动画优化 API</font></strong><font style="color:#01B2BC;">，其回调函数在事件循环的</font><strong><font style="color:#01B2BC;">宏任务阶段执行</font></strong><font style="color:#01B2BC;">，但优先级高于普通宏任务（如 </font><code>&lt;font style=&quot;color:#01B2BC;&quot;&gt;setTimeout&lt;/font&gt;</code><font style="color:#01B2BC;">），且与浏览器的</font><strong><font style="color:#01B2BC;">重绘周期同步</font></strong><font style="color:#01B2BC;">。它的核心作用是让动画更新与浏览器的渲染节奏对齐，避免不必要的重绘，提升动画流畅度。</font></p>
+<p>13.怎么理解react中的hooks，为啥不用类组件，好在哪</p>
+<p><font style="color:#01B2BC;"> 用</font><strong><font style="color:#01B2BC;">函数式编程范式</font></strong><font style="color:#01B2BC;">重构了 React 的核心逻辑，通过自定义 Hook 解决了类组件的逻辑复用难题，同时简化了状态管理、副作用处理和生命周期控制，让函数组件成为更简洁、更易维护的选择。它是 React 从“类驱动”向“函数驱动”演进的关键里程碑。</font></p>
+<p>14.自己有封装自定义的hook吗?为啥不用普通的方法函数</p>
+<p><font style="color:#01B2BC;">自定义 Hook 的本质是</font><strong><font style="color:#01B2BC;">将 React 组件的状态逻辑抽象为可复用的模块</font></strong><font style="color:#01B2BC;">，它解决了普通函数无法处理的三个核心问题：</font></p>
+<p><strong><font style="color:#01B2BC;">状态管理</font></strong><font style="color:#01B2BC;">：通过调用 </font><code>&lt;font style=&quot;color:#01B2BC;&quot;&gt;useState&lt;/font&gt;</code><font style="color:#01B2BC;">等内置 Hook，直接管理组件状态；</font></p>
+<p><strong><font style="color:#01B2BC;">副作用生命周期</font></strong><font style="color:#01B2BC;">：通过 </font><code>&lt;font style=&quot;color:#01B2BC;&quot;&gt;useEffect&lt;/font&gt;</code><font style="color:#01B2BC;">封装副作用的挂载、更新、卸载逻辑；</font></p>
+<p><strong><font style="color:#01B2BC;">状态隔离</font></strong><font style="color:#01B2BC;">：每次调用 Hook 都会创建独立的状态实例，确保多组件使用时的安全性。</font></p>
+<p><font style="color:#01B2BC;">相比之下，普通函数（工具函数）仅能封装纯逻辑（如校验、计算），无法与 React 的状态和生命周期深度绑定。因此，在需要复用状态逻辑或管理副作用的场景下，自定义 Hook 是更优的选择。”</font></p>
+<p>15.有了解ahooks库里的useAsync吗，啥原理</p>
+<p><code>&lt;font style=&quot;color:#01B2BC;&quot;&gt;ahooks&lt;/font&gt;</code><font style="color:#01B2BC;">的 </font><code>&lt;font style=&quot;color:#01B2BC;&quot;&gt;useAsync&lt;/font&gt;</code><font style="color:#01B2BC;">是一个</font><strong><font style="color:#01B2BC;">高度封装的异步逻辑工具 Hook</font></strong><font style="color:#01B2BC;">，其核心原理是通过 </font><code>&lt;font style=&quot;color:#01B2BC;&quot;&gt;useState&lt;/font&gt;</code><font style="color:#01B2BC;">管理状态、</font><code>&lt;font style=&quot;color:#01B2BC;&quot;&gt;useEffect&lt;/font&gt;</code><font style="color:#01B2BC;">控制依赖触发、</font><code>&lt;font style=&quot;color:#01B2BC;&quot;&gt;AbortController&lt;/font&gt;</code><font style="color:#01B2BC;">解决竞态条件，最终将异步操作的复杂性隐藏在 Hook 内部，让开发者专注于业务逻辑。它适用于数据请求、文件上传、定时器等需要处理异步操作的场景，显著提升开发效率和代码质量。</font></p>
+<ol start="16">
+<li><p>AI的数据流式返回是啥原理?(实习相关)</p>
+</li>
+<li><p>Zustand和Redux是啥区别</p>
+</li>
+</ol>
+<p>zustand 更加轻量级，</p>
+<ol start="18">
+<li>setState为啥不能立刻拿到更新后的值场景</li>
+</ol>
+<p><font style="color:#1DC0C9;">因为这个是默认异步更新状态的，主要为了优化性能，减少不必要的渲染，主要是为了收集多次状态更新，再一次性更新虚拟dom从而来减少组件重新渲染的次数，从而提升性能。</font></p>
+<p>1.浏览器输入url之后，白屏时间过长，哪些环节可以优化</p>
+<ol>
+<li><font style="color:#1DC0C9;">懒加载，关键资源优先加载，避免css&#x2F;js阻塞解析</font></li>
+<li><font style="color:#1DC0C9;">SSR加快速度</font></li>
+<li><font style="color:#1DC0C9;">动画用transform&#x2F;opcity避免重拍，避</font>免嵌套的css，减少@import引入</li>
+<li>缓存（通过强缓存或者协商缓存）</li>
+</ol>
+<p>2.可以用缓存优化吗</p>
+<p><font style="color:#01B2BC;">可以啊</font></p>
+<p>3.如果分页的时候快速连续点了第二页和第三页，结果第二页的请求比第三页的返回更慢，出现问题，因为其实想看第三页。怎么解决这个问题。</p>
+<ol>
+<li><font style="color:#1DC0C9;">点击穿透的问题：用防抖来解决把，当点击超过一定事件后没有再次触发点击的时候再调用跳转的逻辑</font></li>
+<li><strong><font style="color:#1DC0C9;">为每个请求绑定唯一的 </font></strong><code>**&lt;font style=&quot;color:#1DC0C9;&quot;&gt;AbortController&lt;/font&gt;**</code><font style="color:#1DC0C9;">：每次发送分页请求前，创建新的 </font><code>&lt;font style=&quot;color:#1DC0C9;&quot;&gt;AbortController&lt;/font&gt;</code><font style="color:#1DC0C9;">，并关联到当前请求。</font></li>
+</ol>
+<p><strong><font style="color:#1DC0C9;">取消旧请求</font></strong><font style="color:#1DC0C9;">：发送新请求前，检查是否有未完成的旧请求（通过 </font><code>&lt;font style=&quot;color:#1DC0C9;&quot;&gt;AbortController&lt;/font&gt;</code><font style="color:#1DC0C9;">的 </font><code>&lt;font style=&quot;color:#1DC0C9;&quot;&gt;signal&lt;/font&gt;</code><font style="color:#1DC0C9;">标识），若有则调用 </font><code>&lt;font style=&quot;color:#1DC0C9;&quot;&gt;abort()&lt;/font&gt;</code><font style="color:#1DC0C9;">取消。</font></p>
+<p><strong><font style="color:#1DC0C9;">关联响应与请求</font></strong><font style="color:#1DC0C9;">：在响应处理中，验证当前请求是否已被取消（通过 </font><code>&lt;font style=&quot;color:#1DC0C9;&quot;&gt;signal.aborted&lt;/font&gt;</code><font style="color:#1DC0C9;">），若已取消则忽略结果。</font></p>
+<p>1.浏览器渲染？</p>
+<ol>
+<li><font style="color:#1DC0C9;">用户输入URl，浏览器先需要获取页面所需要的全部资源包括HTML，css，js，媒体资源等。</font></li>
+<li><font style="color:#1DC0C9;">DNS解析：检查本地DNS缓存-&gt;递归查询根域名服务器-&gt;顶级域名服务器（.com）-》权威域名服务器。查询到后嫩巩固解析到对应的ip地址和端口号</font></li>
+<li><font style="color:#1DC0C9;">tcp建立连接，三次握手</font></li>
+<li><font style="color:#1DC0C9;">发送http请求，服务端返回对应资源文件</font></li>
+<li><font style="color:#1DC0C9;">浏览器开始解析</font><ol>
+<li><font style="color:#1DC0C9;">HTML文档解析成DOM树，遇到外部资源重新发起HTTP请求，遇到script标签先下载执行js</font></li>
+<li><font style="color:#1DC0C9;">构建cssOM，层叠样式对象模型，解析css文件生成</font></li>
+<li><font style="color:#1DC0C9;">生成渲染树，是DOm和CSSOM的合并产物</font></li>
+<li><font style="color:#1DC0C9;">计算渲染树的每个位置和尺寸（布局-重排）</font></li>
+<li><font style="color:#1DC0C9;">将屏幕元素转为屏幕像素，设计颜色填充等</font></li>
+</ol>
+</li>
+</ol>
+<p>2.reflow，repaint</p>
+<p>重<font style="color:#1DC0C9;">拍就是指新计算页面的布局和大小，耗时较长，相当于重构cssDom树，而重绘知识对元素的颜色等进行重新计算，耗时较少</font></p>
+<ul>
+<li><strong><font style="color:#1DC0C9;">Reflow（重排）</font></strong><font style="color:#1DC0C9;">：负责计算元素布局，触发条件与布局属性修改相关，性能成本高。</font></li>
+<li><font style="color:#1DC0C9;">•</font></li>
+</ul>
+<p><strong><font style="color:#1DC0C9;">Repaint（重绘）</font></strong><font style="color:#1DC0C9;">：负责绘制视觉效果，触发条件与视觉属性修改相关，性能成本较低。</font></p>
+<ul>
+<li><font style="color:#1DC0C9;">•</font></li>
+</ul>
+<p><strong><font style="color:#1DC0C9;">优化核心</font></strong><font style="color:#1DC0C9;">：减少 Reflow 触发次数（通过批量操作、合成层、避免强制同步布局），同时限制 Repaint 的影响范围（通过 </font><code>&lt;font style=&quot;color:#1DC0C9;&quot;&gt;contain&lt;/font&gt;</code><font style="color:#1DC0C9;">、简化视觉属性）</font><br>3.CSS 选择器优先级如何计算？</p>
+<p><font style="color:#1DC0C9;">首先内联样式优先级最高算1000</font></p>
+<p><font style="color:#1DC0C9;">然后是id选择器，算100</font></p>
+<p><font style="color:#1DC0C9;">然后是类选择器，属性选择器，伪类算10</font></p>
+<p><font style="color:#1DC0C9;">然后是元素，伪元素选择器算1</font></p>
+<p>4.什么是 BFC？如何触发？</p>
+<p><strong><font style="color:#1DC0C9;">BFC（Block Formatting Context，块级格式化上下文）</font></strong><font style="color:#1DC0C9;"> 是 CSS 中定义的一种</font><strong><font style="color:#1DC0C9;">块级元素的布局环境</font></strong><font style="color:#1DC0C9;">，用于控制块级盒子（如 </font><code>&lt;font style=&quot;color:#1DC0C9;&quot;&gt;&lt;div&gt;&lt;/font&gt;</code><font style="color:#1DC0C9;">、</font><code>&lt;font style=&quot;color:#1DC0C9;&quot;&gt;&lt;p&gt;&lt;/font&gt;</code><font style="color:#1DC0C9;">等）的渲染规则和与其他元素的交互方式。</font></p>
+<p><font style="color:#1DC0C9;">简单来说，BFC 是一个“独立的渲染区域”，区域内的块级元素按照特定规则布局，且</font><strong><font style="color:#1DC0C9;">与区域外的元素相互隔离</font></strong><font style="color:#1DC0C9;">（不会互相影响布局）</font></p>
+<p><font style="color:#1DC0C9;">常见场景：1. 浮动元素父容器塌陷</font></p>
+<p><font style="color:#1DC0C9;">相邻容器边距重合，块级子元素不收外部影响。</font></p>
+<p><font style="color:#1DC0C9;">触发条件:float不为none</font></p>
+<p><font style="color:#1DC0C9;">overFlow 不为 visible</font></p>
+<p><font style="color:#1DC0C9;">display为inlene-bloc，grid，flex，teble-ceil，table-caption，flex&#x2F;inline-flex&#x2F;grid&#x2F;inline-grid</font><br>5.什么是 DOCTYPE？</p>
+<p><font style="color:#1DC0C9;"></font></p>
+<p><font style="color:#1DC0C9;">标记HTML应该以那种方式解析，有两种标准方式，怪异模式解析</font><br>6.盒模型有哪两种？区别是什么？</p>
+<p><font style="color:#1DC0C9;">标准盒模型和怪异盒模型，标准合模型当写width属性的时候其实只包括内容宽度</font></p>
+<p><font style="color:#1DC0C9;">怪异盒模型去通过css属性写width属性时包括内边距合边框以及内容高度</font><br>7.原型和原型链？</p>
+<p><font style="color:#1DC0C9;">每个函数都有一个原型对象，每个对象都有一个原型，对象的原型指向构造它的函数的原型对象，而函数的原型对象本质上就是一个对象，所以可以在原型对象上挂载一些属性合方法，另外这个原型对象也有自己的原型。所以当一个对象要调用某个函数的话，如果自己身上没有就会找它的原型上有没有，原型又会继续往上找，直到找到最顶上面的object.NULL就会返回n</font>ull<br>8.js事件传播机制</p>
+<p><font style="color:#1DC0C9;">js事件传播分为几个阶段</font></p>
+<p> <font style="color:#1DC0C9;">冒泡：事件从目标元素传播到根元素的过程，允许父元素处理事件</font></p>
+<p><font style="color:#1DC0C9;">目标阶段：事件到达目标元素本身，事件被触发</font></p>
+<p><font style="color:#1DC0C9;">捕获：事件从根元素的沿dom书向下传递到目标元素的父级节点，最终到达目标元素的直接父节点。允许提前处理事件</font><br>9.防抖和节流的区别？各用在什么场景？</p>
+<p><font style="color:#1DC0C9;">防抖是指当频繁操作时，只有最后一次操作完到一定事件不再操作时才去执行对应的回调函数</font></p>
+<p><font style="color:#1DC0C9;">主要用于input框模糊搜素的时候</font></p>
+<p><font style="color:#1DC0C9;">而节流往往用于需要滚动加载新的数据的时候，为了避免频繁请求导致性能浪费</font><br>10.Promise ？如何链式调用？</p>
+<p><font style="color:#1DC0C9;">Promise是Es6提供的一种处理异步任务的方式，通过创建一个promise对象内置又resolve，reject，then等动态函数，而调用then函数同样会返回一个promise对象从而能够进行链式调用，然后边的then可以处理前一个PRomise的结果或错误</font><br>11.async&#x2F;await 的本质？</p>
+<p><font style="color:#1DC0C9;">本质就是Promise的一种语法糖形式，让异步代码更像同步，await等待一个又then函数的对象，将js代码阻塞在这个位置，将后面的代码作为回调放入任务队列中。</font><br>12.常见的 HTTP 状态码有哪些？</p>
+<table>
+<thead>
+<tr>
+<th align="left"><font style="color:#1DC0C9;">500</font></th>
+<th align="left"><font style="color:#1DC0C9;">Internal Server Error</font></th>
+<th align="left"><strong><font style="color:#1DC0C9;">最常见</font></strong><font style="color:#1DC0C9;">：服务器内部错误（如代码异常、数据库崩溃）。</font></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><font style="color:#1DC0C9;">501</font></td>
+<td align="left"><font style="color:#1DC0C9;">Not Implemented</font></td>
+<td align="left"><font style="color:#1DC0C9;">服务器不支持该请求方法（如对不支持的 HTTP 方法返回此状态码）。</font></td>
+</tr>
+<tr>
+<td align="left"><font style="color:#1DC0C9;">502</font></td>
+<td align="left"><font style="color:#1DC0C9;">Bad Gateway</font></td>
+<td align="left"><font style="color:#1DC0C9;">网关错误（如反向代理服务器无法连接到上游服务器）。</font></td>
+</tr>
+<tr>
+<td align="left"><font style="color:#1DC0C9;">503</font></td>
+<td align="left"><font style="color:#1DC0C9;">Service Unavailable</font></td>
+<td align="left"><font style="color:#1DC0C9;">服务不可用（如服务器过载、维护中）。</font></td>
+</tr>
+<tr>
+<td align="left"><font style="color:#1DC0C9;">504</font></td>
+<td align="left"><font style="color:#1DC0C9;">Gateway Timeout</font></td>
+<td align="left"><font style="color:#1DC0C9;">网关超时（上游服务器未在规定时间内响应）。</font></td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th align="left"><font style="color:#1DC0C9;">400</font></th>
+<th align="left"><font style="color:#1DC0C9;">Bad Request</font></th>
+<th align="left"><font style="color:#1DC0C9;">请求语法错误（如参数格式错误、JSON 解析失败）。</font></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><font style="color:#1DC0C9;">401</font></td>
+<td align="left"><font style="color:#1DC0C9;">Unauthorized</font></td>
+<td align="left"><font style="color:#1DC0C9;">未认证（客户端未提供有效凭证，如未登录）。</font></td>
+</tr>
+<tr>
+<td align="left"><font style="color:#1DC0C9;">403</font></td>
+<td align="left"><font style="color:#1DC0C9;">Forbidden</font></td>
+<td align="left"><font style="color:#1DC0C9;">无权限（客户端认证通过，但无权限访问该资源）。</font></td>
+</tr>
+<tr>
+<td align="left"><font style="color:#1DC0C9;">404</font></td>
+<td align="left"><font style="color:#1DC0C9;">Not Found</font></td>
+<td align="left"><strong><font style="color:#1DC0C9;">最常见</font></strong><font style="color:#1DC0C9;">：资源不存在（如访问不存在的页面或文件）。</font></td>
+</tr>
+<tr>
+<td align="left"><font style="color:#1DC0C9;">405</font></td>
+<td align="left"><font style="color:#1DC0C9;">Method Not Allowed</font></td>
+<td align="left"><font style="color:#1DC0C9;">请求方法不允许（如对只读资源使用 POST 方法）。</font></td>
+</tr>
+<tr>
+<td align="left"><font style="color:#1DC0C9;">409</font></td>
+<td align="left"><font style="color:#1DC0C9;">Conflict</font></td>
+<td align="left"><font style="color:#1DC0C9;">资源冲突（如提交数据时版本冲突，或创建已存在的资源）。</font></td>
+</tr>
+<tr>
+<td align="left"><font style="color:#1DC0C9;">410</font></td>
+<td align="left"><font style="color:#1DC0C9;">Gone</font></td>
+<td align="left"><font style="color:#1DC0C9;">资源永久删除（客户端无法通过任何 URL 访问）。</font></td>
+</tr>
+<tr>
+<td align="left"><font style="color:#1DC0C9;">429</font></td>
+<td align="left"><font style="color:#1DC0C9;">Too Many Requests</font></td>
+<td align="left"><font style="color:#1DC0C9;">请求过于频繁（服务器限制了请求频率，如接口限流）</font></td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th align="left"><font style="color:#1DC0C9;">状态码</font></th>
+<th align="left"><font style="color:#1DC0C9;">名称</font></th>
+<th align="left"><font style="color:#1DC0C9;">含义</font></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><font style="color:#1DC0C9;">301</font></td>
+<td align="left"><font style="color:#1DC0C9;">Moved Permanently</font></td>
+<td align="left"><font style="color:#1DC0C9;">资源</font><strong><font style="color:#1DC0C9;">永久重定向</font></strong><font style="color:#1DC0C9;">（原 URL 已失效，客户端应更新书签到新 URL）。</font></td>
+</tr>
+<tr>
+<td align="left"><font style="color:#1DC0C9;">302</font></td>
+<td align="left"><font style="color:#1DC0C9;">Found</font></td>
+<td align="left"><font style="color:#1DC0C9;">资源</font><strong><font style="color:#1DC0C9;">临时重定向</font></strong><font style="color:#1DC0C9;">（原 URL 有效，但临时指向新 URL，客户端下次仍可访问原 URL）。</font></td>
+</tr>
+<tr>
+<td align="left"><font style="color:#1DC0C9;">304</font></td>
+<td align="left"><font style="color:#1DC0C9;">Not Modified</font></td>
+<td align="left"><font style="color:#1DC0C9;">资源未修改（客户端缓存有效，无需重新下载，直接使用本地缓存）。</font></td>
+</tr>
+<tr>
+<td align="left"><font style="color:#1DC0C9;">307</font></td>
+<td align="left"><font style="color:#1DC0C9;">Temporary Redirect</font></td>
+<td align="left"><font style="color:#1DC0C9;">临时重定向（与 302 类似，但更严格：POST 请求重定向后仍用 POST 方法）。</font></td>
+</tr>
+<tr>
+<td align="left"><font style="color:#1DC0C9;">308</font></td>
+<td align="left"><font style="color:#1DC0C9;">Permanent Redirect</font></td>
+<td align="left"><font style="color:#1DC0C9;">永久重定向（与 301 类似，但更严格：POST 请求重定向后仍用 POST 方法）。</font></td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th align="left"><font style="color:#1DC0C9;">状态码</font></th>
+<th align="left"><font style="color:#1DC0C9;">名称</font></th>
+<th align="left"><font style="color:#1DC0C9;">含义</font></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><font style="color:#1DC0C9;">200</font></td>
+<td align="left"><font style="color:#1DC0C9;">OK</font></td>
+<td align="left"><strong><font style="color:#1DC0C9;">最常见</font></strong><font style="color:#1DC0C9;">：请求成功，返回预期数据（如 GET 请求获取资源）。</font></td>
+</tr>
+<tr>
+<td align="left"><font style="color:#1DC0C9;">201</font></td>
+<td align="left"><font style="color:#1DC0C9;">Created</font></td>
+<td align="left"><font style="color:#1DC0C9;">资源创建成功（如 POST 请求提交表单后创建新用户）。</font></td>
+</tr>
+<tr>
+<td align="left"><font style="color:#1DC0C9;">202</font></td>
+<td align="left"><font style="color:#1DC0C9;">Accepted</font></td>
+<td align="left"><font style="color:#1DC0C9;">请求已接收但未立即处理（如异步任务，服务器返回“任务已接受，稍后通知”）。</font></td>
+</tr>
+<tr>
+<td align="left"><font style="color:#1DC0C9;">204</font></td>
+<td align="left"><font style="color:#1DC0C9;">No Content</font></td>
+<td align="left"><font style="color:#1DC0C9;">请求成功但无返回内容（如 DELETE 请求删除资源后，无需返回数据）。</font></td>
+</tr>
+<tr>
+<td align="left"><font style="color:#1DC0C9;">206</font></td>
+<td align="left"><font style="color:#1DC0C9;">Partial Content</font></td>
+<td align="left"><font style="color:#1DC0C9;">分块传输成功（如下载大文件时分段返回数据）。</font></td>
+</tr>
+</tbody></table>
+<p><font style="color:#1DC0C9;">200（），201，300，304（资源未修改），500（服务端错误），404（找不到页面），403（无权限），401（登陆过期）</font><br>13.GET 和 POST ？</p>
+<p><font style="color:#1DC0C9;">get请求一般用于请求数据，post一般用于表单提交</font><br>14.浏览器缓存有哪几种？如何设置？</p>
+<p><font style="color:#1DC0C9;">强缓存&#x2F;协商缓存，</font></p>
+<p><font style="color:#1DC0C9;">强缓存：通过服务端的响应头告知浏览缓存有效期，通过cache-control字段，浏览器存储该值，并将内容进行缓存（磁盘&#x2F;内存）在下次相同请求时先判断是否在有效期内，从而判断是否请求，有效的话则直接使用本地缓存。</font></p>
+<p><font style="color:#1DC0C9;">协商缓存：由服务端验证本地缓存是否有效，有效返回304，第一次请求的时候服务端返回last-modifid字段，浏览器存储，后续请求携带该字段内容放在if-modified-since来给服务端，服务端比较时间戳。</font></p>
+<p>15.Vue 双向绑定的原理是什么？</p>
+<p><font style="color:#1DC0C9;">发布订阅加数据劫持，当访问某个数据时会调用get方法，那么会被收集为作为依赖该数据的数据</font></p>
+<p><font style="color:#1DC0C9;">vue2通过object·.definePropoty来设置它的set合get函数从而在set的时候动态更新视图。</font></p>
+<p><font style="color:#1DC0C9;">vue3通过把所有对象包装成Proxy拦截对象的操作，实现更加全面的数据劫持，能够检测到数组的新增，删除。</font><br>16.Vue 组件通信有哪些方式？</p>
+<p><font style="color:#1DC0C9;">provide&#x2F;inject</font></p>
+<p><font style="color:#1DC0C9;">事件总线</font></p>
+<p><font style="color:#1DC0C9;">props&#x2F;emit</font></p>
+<p><font style="color:#1DC0C9;">vuex&#x2F;pinia</font></p>
+<h2 id="zYQAe">9月14日</h2>
+  
+<p>17.虚拟DOM和真实DOM？</p>
+<p><font style="color:#1DC0C9;">虚拟DOM是真实DOM的一个抽象，实质上是一个树形结构的js对象，主要用于响应式框架优化更新dom的操作，每次视图变化都构建一颗虚拟DOm，从而对比新旧DOM，只修改部分真实DOM。</font><br>18.Vue 路由的模式及区别？</p>
+<p><font style="color:#1DC0C9;">history模式，hash模式。history模式更加简洁，但是需要服务端配置对应的映射，支持SEO</font></p>
+<p><font style="color:#1DC0C9;">hash模式会带一个#号，但是不需要服务端配置。兼容性更好</font><br>19.前端性能优化从哪些方面入手？</p>
+<p><font style="color:#1DC0C9;">webPack方面可以进行代码压缩，TreeShaking去掉无用的代码，</font></p>
+<p><font style="color:#1DC0C9;">渲染层面可以，减少DOm嵌套，进行图片等资源懒加载，少用复杂动画，多用tanrsform和opcity属性降低重绘重拍</font></p>
+<p><font style="color:#1DC0C9;">合并文件，利用浏览器缓存手段（强缓存&#x2F;协商缓存&#x2F;service Work），利用雪碧图，减少请求次数</font></p>
+<p><font style="color:#1DC0C9;">使用CDN加载静态资源，服务端渲染和静态站点生成</font><br>20.模块化规范有哪些？CommonJS 和 ES6 Module 区别？</p>
+<p><font style="color:#1DC0C9;">核心差异在于</font><strong><font style="color:#1DC0C9;">加载机制</font></strong><font style="color:#1DC0C9;">（同步 vs 异步）、</font><strong><font style="color:#1DC0C9;">语法</font></strong><font style="color:#1DC0C9;">（</font><code>&lt;font style=&quot;color:#1DC0C9;&quot;&gt;require&lt;/font&gt;</code><font style="color:#1DC0C9;">&#x2F;</font><code>&lt;font style=&quot;color:#1DC0C9;&quot;&gt;module.exports&lt;/font&gt;</code><font style="color:#1DC0C9;">vs </font><code>&lt;font style=&quot;color:#1DC0C9;&quot;&gt;import&lt;/font&gt;</code><font style="color:#1DC0C9;">&#x2F;</font><code>&lt;font style=&quot;color:#1DC0C9;&quot;&gt;export&lt;/font&gt;</code><font style="color:#1DC0C9;">）和</font><strong><font style="color:#1DC0C9;">静态分析能力</font></strong><font style="color:#1DC0C9;">（ES6 Module 支持编译时依赖分析）。选择时需结合项目环境（Node.js 或浏览器）和需求（静态分析、动态加载）。</font><br>21.TypeScript 相比 JS 的优势？</p>
+<p><font style="color:#01B2BC;">强语言：对于变量有类型的限定，更加安全，减少运行时bug，同时扩展了接口，泛型等高级特性，更加适合面向对象编程，代码可维护性更强</font><br>22.interface和type</p>
+<p><font style="color:#01B2BC;">interface 主要是对象类型七月，可以继承extends关键字来来扩展类型，type的话就是声明一个类型别名，通过&amp;或者|符号来扩展</font><br>23.如何检测前端内存泄漏？</p>
+<ol>
+<li><strong><font style="color:#01B2BC;">未清除的定时器&#x2F;回调</font></strong><font style="color:#01B2BC;">：</font><code>&lt;font style=&quot;color:#01B2BC;&quot;&gt;setInterval&lt;/font&gt;</code><font style="color:#01B2BC;">未 </font><code>&lt;font style=&quot;color:#01B2BC;&quot;&gt;clearInterval&lt;/font&gt;</code><font style="color:#01B2BC;">，或异步回调持有 DOM&#x2F;对象引用。</font></li>
+<li><strong><font style="color:#01B2BC;">未解绑的事件监听</font></strong><font style="color:#01B2BC;">：DOM 元素移除前未移除</font><font style="color:#01B2BC;"> </font><code>&lt;font style=&quot;color:#01B2BC;&quot;&gt;addEventListener&lt;/font&gt;</code><font style="color:#01B2BC;">绑定的回调。</font></li>
+<li><strong><font style="color:#01B2BC;">闭包滥用</font></strong><font style="color:#01B2BC;">：闭包长期持有外部变量引用（如缓存未清理的全局变量）。</font></li>
+<li><strong><font style="color:#01B2BC;">全局变量&#x2F;未释放的 DOM 引用</font></strong><font style="color:#01B2BC;">：意外将变量挂载到 </font><code>&lt;font style=&quot;color:#01B2BC;&quot;&gt;window&lt;/font&gt;</code><font style="color:#01B2BC;">，或 JS 仍引用已移除的 DOM 节点（分离的 DOM 树）。</font></li>
+</ol>
+<p><font style="color:#01B2BC;">具体排查：浏览器的开发者工具里面用memory面板和performance面板来排查。通过对比操作前后的堆内存快照，识别未被收回的对象</font></p>
+<ol>
+<li><font style="color:#01B2BC;">打开 Chrome DevTools → 切换到 </font><strong><font style="color:#01B2BC;">Memory</font></strong><font style="color:#01B2BC;"> 面板。</font></li>
+<li><font style="color:#01B2BC;">操作前：点击「Take snapshot」记录初始堆状态（如页面刚加载完成）。</font></li>
+<li><font style="color:#01B2BC;">模拟用户操作（如反复打开&#x2F;关闭弹窗、切换路由）。</font></li>
+<li><font style="color:#01B2BC;">操作后：再次点击「Take snapshot」记录最新堆状态。</font></li>
+<li><font style="color:#01B2BC;">对比两次快照：</font><ul>
+<li><font style="color:#01B2BC;">查看「Size Delta」（内存增量），筛选增长的对象类型（如</font><font style="color:#01B2BC;"> </font><code>&lt;font style=&quot;color:#01B2BC;&quot;&gt;Detached HTMLDivElement&lt;/font&gt;</code><font style="color:#01B2BC;">是分离的 DOM 节点）。</font></li>
+<li><font style="color:#01B2BC;">展开「Retainers」（引用链），追踪哪些代码持有这些对象的引用（定位泄漏源头）。</font></li>
+</ul>
+</li>
+</ol>
+<p>24.如何调试前端代码？有哪些工具？</p>
+<ul>
+<li><font style="color:#01B2BC;">基础问题用 </font><code>&lt;font style=&quot;color:#01B2BC;&quot;&gt;console&lt;/font&gt;</code><font style="color:#01B2BC;">和断点调试；</font></li>
+<li><font style="color:#01B2BC;">CSS 问题用</font><font style="color:#01B2BC;"> </font><code>&lt;font style=&quot;color:#01B2BC;&quot;&gt;Elements&lt;/font&gt;</code><font style="color:#01B2BC;">面板；</font></li>
+<li><font style="color:#01B2BC;">接口问题用</font><font style="color:#01B2BC;"> </font><code>&lt;font style=&quot;color:#01B2BC;&quot;&gt;Network&lt;/font&gt;</code><font style="color:#01B2BC;">面板或 Postman；</font></li>
+<li><font style="color:#01B2BC;">框架项目用 React&#x2F;Vue DevTools；</font></li>
+<li><font style="color:#01B2BC;">性能与内存问题用 </font><code>&lt;font style=&quot;color:#01B2BC;&quot;&gt;Performance&lt;/font&gt;</code><font style="color:#01B2BC;">&#x2F;</font><code>&lt;font style=&quot;color:#01B2BC;&quot;&gt;Memory&lt;/font&gt;</code><font style="color:#01B2BC;">面板或 Lighthouse&#x2F;Sentry。</font></li>
+</ul>
+<p>2.移动端怎么做适配</p>
+<p><font style="color:#01B2BC;">用rem，vw，vh或者100%等单位，或者通过弹性布局，或者是媒体查询，根据不同的分辨率，屏幕大小来写不同的样式</font></p>
+<p><font style="color:#01B2BC;">meta设置缩放比例为1：1</font></p>
+<ol start="3">
+<li>rem怎么设置根节点的字号</li>
+</ol>
+<p><font style="color:#01B2BC;">通过设置HTML的font-size</font></p>
+<p>4.讲讲输入url到页面呈现，有哪些过程</p>
+<p><font style="color:#01B2BC;">输入url后先访问本地的dns缓存，如果没有就发送请求给根dns服务器去查询，查询到对应的ip地址和端口号之后，就三次握手简历tcp连接，然后开始发送http请求，拿到服务端的html等资源文件之后，浏览器开始解析dom，构建dom树，构建css层级样式表，构建渲染树，然后渲染上去，中间 如果有遇到script标签再发送异步请求，等待js加载执行，然后继续渲染。</font></p>
+<p>5.讲讲js的事件循环</p>
+<p><font style="color:#01B2BC;">事件循环本质是用于处理同步任务和异步任务执行顺序的一种机制。</font></p>
+<p><font style="color:#01B2BC;">首先，js中的任务分为了同步任务和异步任务，异步任务又分为了宏任务和微任务。这些任务执行的优先级为同步任务，微任务，宏任务。同时该机制提供了两个队列，一个宏任务队列，一个微任务队列，当js代码执行时，首先将同步代码执行完毕，一些异步操作执行完毕，微任务操作的回调函数放入微任务队列中，宏任务的回调放入宏任务队列中，当同步代码执行完毕后，先检查微任务队列，将微任务队列中的所有任务按顺序取出执行后，再检查宏任务队列，取出一个宏任务回调执行完毕后，可能又会产生微任务，所以需要再次执行微任务，一直不断的重复第二，三个步骤，直到任务队列全都清空就是一次事件循环</font></p>
+<ol start="6">
+<li>缩短首屏渲染时间有哪些优化方案</li>
+<li><font style="color:#01B2BC;">使用工具压缩资源，html&#x2F;css&#x2F;js等，响应式加载图片，更具srcset提供不同分辨率的图片。首屏样式内联，优化dom结构，减少不必要的dom节点，避免深层嵌套</font></li>
+</ol>
+<p><font style="color:#01B2BC;">使用懒加载，只加载需要立即显示的画面，少用@import，合并相似请求，使用本地缓存</font></p>
+<p><font style="color:#01B2BC;">减少请求次数</font></p>
+<p><font style="color:#01B2BC;">使用SSR技术</font></p>
+<p>7.静态资源怎么优化?以图片为例</p>
+<ol>
+<li><font style="color:#01B2BC;">缓存，</font></li>
+<li><font style="color:#01B2BC;">图片使用雪碧图，减少请求次数，</font></li>
+<li><font style="color:#01B2BC;">同时用srcset响应式根据屏幕加载不同分辨率的图片，</font></li>
+<li><font style="color:#01B2BC;">格式优化和压缩</font></li>
+</ol>
+<p>1.项目里怎么调大模型api，prompt有做安全性设计吗</p>
+<p><font style="color:#01B2BC;">对大模型进行参数调优（控制输出的随机性参数，0-1（有低温度和高温度，越小则越确定，保守）最大输出长度，主题惩罚，值高则切换，词频惩罚，值高，则表面已生成的token）</font></p>
+<p><font style="color:#01B2BC;">prompt安全设计：避免通过复杂的prompt提示词导致输出一些不合适，不合规的内容，输入层进行过滤合清晰，prompt层加以约束，明确身份合边界，加入安全规则等指令约束，输出做校验和拦截</font></p>
+<p>3.节流时间间隔150ms，300ms内连续触发，会执行几次</p>
+<p><font style="color:#1DC0C9;">2次</font></p>
+<p>4.定位有几种，在文档流中吗，有什么作用?</p>
+<p><font style="color:#1DC0C9;">relative 在</font></p>
+<p><font style="color:#1DC0C9;">absolute 不在</font></p>
+<p><font style="color:#1DC0C9;">static 在</font></p>
+<p><font style="color:#1DC0C9;">sticky 属于超过阈值就变成fixed否则是relative</font></p>
+<p><font style="color:#1DC0C9;">fixed 不在</font></p>
+<p>5.css选择器有哪些</p>
+<p><font style="color:#1DC0C9;">元素选择器，id选择器，通用选择器，后代选择器，子代选择器，相邻兄弟选择器，兄弟选择器。类选择器，伪类选择器，属性选择器</font></p>
+<p>6.伪类选择器、伪元素选择器分别是干啥的</p>
+<p><font style="color:#1DC0C9;">伪类选择器是指的某个元素的某个状态生效的时候渲染指定样式</font></p>
+<p><font style="color:#1DC0C9;">为元素选择器一般指元素的某一个部分，比如第一个字母或者第一行，或者相对元素的某个位置渲染指定样式。</font></p>
+<p>7.介绍一下flex布局</p>
+<p>是<font style="color:#01B2BC;">一种弹性布局，通过设置父元素为flex，并给出主轴方向，使得子元素利用父元素的剩余空间进行拉伸或者收缩，自动调整位置和尺寸（受父元素规则约束）</font></p>
+<ol start="8">
+<li>flex: 1是一个聚合属性，聚合了哪些?</li>
+</ol>
+<p><font style="color:#1DC0C9;">flex-grow，flex-shrink，flex-basic，基准值，可扩展性，可收缩性</font></p>
+<p>9.实现水平垂直居中的方法</p>
+<p><font style="color:#01B2BC;">通过margin-auto+子元素绝对定位</font></p>
+<p><font style="color:#01B2BC;">通过flex布局，grid布局</font></p>
+<p><font style="color:#01B2BC;">单行文本用line-hight</font></p>
+<p><font style="color:#01B2BC;">通过</font><font style="color:#01B2BC;">子元素绝对定位 + </font><code>&lt;font style=&quot;color:#01B2BC;&quot;&gt;translate(-50%, -50%)&lt;/font&gt;</code></p>
+<p>10.css盒模型</p>
+<p><font style="color:#01B2BC;">将css元素抽象为一个盒子，由内容，内边距，外边距，边框来组成。利于更好的布局，并且分为了标准盒模型和怪异盒模型</font></p>
+<p>11.介绍一下bfc</p>
+<p><strong><font style="color:#01B2BC;">块格式化上下文，</font></strong><font style="color:#01B2BC;">定义了一个</font><strong><font style="color:#01B2BC;">独立的渲染区域，核心价值为隔离内外布局</font></strong></p>
+<p><font style="color:#01B2BC;">bfc就是一个块级上下文，保证块内的元素布局不受外部影响，通常通过display的一系列布局以及float等还有hidden不为visible的时候都可以触发</font></p>
+<p><font style="color:#01B2BC;">作用：解决了浮动塌陷问题，</font></p>
+<h4 id="d38d1019">**<font style="color:#01B2BC;">避免垂直边距折叠，阻止浮动元素覆盖，隔离内部布局，不影响外部</font>**</h4>
+| `<font style="color:#01B2BC;">float: left/right</font>` | <font style="color:#01B2BC;">元素浮动（非</font><font style="color:#01B2BC;"> </font>`<font style="color:#01B2BC;">none</font>`<font style="color:#01B2BC;">）</font> |
+| :--- | --- |
+| `<font style="color:#01B2BC;">position: absolute/fixed</font>` | <font style="color:#01B2BC;">元素绝对/固定定位</font> |
+| `<font style="color:#01B2BC;">display: inline-block/table-cell/table-caption/flex/grid</font>` | <font style="color:#01B2BC;">行内块、表格单元格、表格标题、Flex 容器、Grid 容器</font> |
+| `<font style="color:#01B2BC;">overflow: hidden/auto/scroll</font>` | <font style="color:#01B2BC;">元素溢出隐藏/自动滚动</font> |
+| `<font style="color:#01B2BC;">root</font>`<font style="color:#01B2BC;">元素（</font>`<font style="color:#01B2BC;"><html></font>`<font style="color:#01B2BC;">）</font> | <font style="color:#01B2BC;"></font> |
+
+
+<ol start="12">
+<li>vh vw有用过吗</li>
+</ol>
+<p><font style="color:#01B2BC;">根据视窗的高度来计算元素的尺寸</font></p>
+<p>13.实现一行文字，超出末尾显示省略号，如何实现</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">width</span>: 200px; <span class="comment">/* 必须设置宽度（或 max-width），限制元素宽度 */</span></span><br><span class="line">white-<span class="attr">space</span>: nowrap; <span class="comment">/* 禁止文字换行 */</span></span><br><span class="line"><span class="attr">overflow</span>: hidden; <span class="comment">/* 隐藏超出元素宽度的内容 */</span></span><br><span class="line">text-<span class="attr">overflow</span>: ellipsis; </span><br></pre></td></tr></table></figure>
+
+<p>14.箭头函数和普通函数的区别</p>
+<p><font style="color:#01B2BC;">写法不一样</font></p>
+<p><font style="color:#01B2BC;">箭头函数的this指向是再定义的时候由js执行上下文的时候就定号的，所以它的this指向无法通过call，applay，bind改变，同时也不能作为构造函数和生成器函数使用</font></p>
+<p>15.介绍一下闭包</p>
+<p><font style="color:#01B2BC;">它本质上是</font><strong><font style="color:#01B2BC;">函数与其词法作用域的组合体</font></strong></p>
+<p><font style="color:#01B2BC;">简单来说就是再一个函数中返回了另外一个函数，而返回的这个函数引用了外部函数的数据，那么返回的函数就称为闭包</font></p>
+<p>16.开发中哪些场景会造成闭包、内存泄露</p>
+<p><font style="color:#01B2BC;">在 DOM 事件绑定或异步回调中，内部函数常引用外部作用域的变量（如 DOM 元素、状态值），形成闭包。</font></p>
+<p><font style="color:#01B2BC;">通过闭包模拟私有变量时，若模块实例未被销毁，闭包会持续持有私有变量</font></p>
+<p><code>&lt;font style=&quot;color:#01B2BC;&quot;&gt;setTimeout&lt;/font&gt;</code><font style="color:#01B2BC;">、</font><code>&lt;font style=&quot;color:#01B2BC;&quot;&gt;setInterval&lt;/font&gt;</code><font style="color:#01B2BC;">或 </font><code>&lt;font style=&quot;color:#01B2BC;&quot;&gt;Promise&lt;/font&gt;</code><font style="color:#01B2BC;">的回调函数若引用外部变量，会形成闭包并保留变量。</font></p>
+<p><font style="color:#01B2BC;">函数工厂</font></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">createMultiplier</span>(<span class="params">factor</span>) &#123;</span><br><span class="line">  <span class="comment">// 返回的函数（闭包）引用 factor</span></span><br><span class="line">  <span class="keyword">return</span> <span class="function">(<span class="params">num</span>) =&gt;</span> num * factor;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> double = <span class="title function_">createMultiplier</span>(<span class="number">2</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">double</span>(<span class="number">5</span>)); <span class="comment">// 10</span></span><br><span class="line"><span class="comment">// double 仍持有 factor: 2 的引用</span></span><br></pre></td></tr></table></figure>
+
+<ol start="17">
+<li>settimeout有一个计时不准的问题，为啥</li>
+</ol>
+<p><font style="color:#01B2BC;">因为它本质上就是在计时结束后把回调加入宏任务队列中，就算设置的是0也要等待队列到了对应的函数才会执行,最少4ms，node环境中最少1ms</font></p>
+<ol start="18">
+<li>settimeout是啥时候开始计时?执行?如果是0，会立刻放进宏任务队列吗?</li>
+</ol>
+<p>是<font style="color:#01B2BC;">从定义这个定时器就开始定时，不会立即放进去，一般要等4ms才会放进去</font></p>
+<ol start="19">
+<li>react的fiber架构有啥用?为什么可以打断任务执行</li>
+</ol>
+<p><strong><font style="color:#01B2BC;">核心：“可中断的增量更新”</font></strong><font style="color:#01B2BC;">：</font></p>
+<p><font style="color:#01B2BC;">iber 的本质是</font><strong><font style="color:#01B2BC;">将渲染工作拆分为多个“可独立调度的小单元”</font></strong><font style="color:#01B2BC;">，通过“增量更新”和“优先级调度”实现更流畅的用户体验。其核心价值体现在三点：</font></p>
+<h3 id="DhYjM">**<font style="color:#01B2BC;">解决长任务阻塞，提升页面响应性</font>**</h3>
+<font style="color:#01B2BC;">旧版 Stack Reconciler 采用</font>**<font style="color:#01B2BC;">同步递归</font>**<font style="color:#01B2BC;">的方式遍历组件树，一旦开始渲染（如更新一个长列表），就会一直占用主线程，直到所有组件都处理完毕。这会导致：</font>
+
+<ul>
+<li><font style="color:#01B2BC;">用户输入（如点击、滚动）被阻塞，页面“卡顿”；</font></li>
+<li><font style="color:#01B2BC;">动画掉帧，体验不流畅。</font></li>
+</ul>
+<p><font style="color:#01B2BC;">Fiber 则将渲染拆分为</font><strong><font style="color:#01B2BC;">多个 Fiber 节点</font></strong><font style="color:#01B2BC;">（每个节点对应一个组件的更新任务），每次只处理</font><strong><font style="color:#01B2BC;">一小部分 Fiber</font></strong><font style="color:#01B2BC;">（比如一个组件或一个列表项），然后</font><strong><font style="color:#01B2BC;">主动中断</font></strong><font style="color:#01B2BC;">，让主线程处理高优先级任务（如用户事件）。等高优先级任务完成，再从上次中断的地方继续。这种“增量更新”彻底解决了长任务阻塞的问题。</font></p>
+<h3 id="JgvFk"><font style="color:#01B2BC;">2. </font>**<font style="color:#01B2BC;">支持优先级调度，保证关键任务优先</font>**</h3>
+<font style="color:#01B2BC;">Fiber 为不同类型的更新分配</font>**<font style="color:#01B2BC;">优先级</font>**<font style="color:#01B2BC;">（如用户输入是“高优先级”，数据加载是“低优先级”）。当高优先级任务到来时，Fiber 会：</font>
+
+<ul>
+<li><font style="color:#01B2BC;">暂停当前的低优先级更新；</font></li>
+<li><font style="color:#01B2BC;">先处理高优先级任务（如用户点击按钮的回调）；</font></li>
+<li><font style="color:#01B2BC;">高优先级任务完成后，再恢复低优先级更新。</font></li>
+</ul>
+<p><font style="color:#01B2BC;">这使得用户交互始终保持响应，不会出现“点击按钮后要等几秒才反应”的情况。</font></p>
+<h3 id="buopX"><font style="color:#01B2BC;">3. </font>**<font style="color:#01B2BC;">优化性能，减少不必要的计算</font>**</h3>
+<font style="color:#01B2BC;">Fiber 通过</font>**<font style="color:#01B2BC;">双缓存 Fiber 树</font>**<font style="color:#01B2BC;">（</font>`<font style="color:#01B2BC;">current</font>`<font style="color:#01B2BC;">和</font><font style="color:#01B2BC;"> </font>`<font style="color:#01B2BC;">workInProgress</font>`<font style="color:#01B2BC;">）复用状态：</font>
+
+<ul>
+<li><code>&lt;font style=&quot;color:#01B2BC;&quot;&gt;current&lt;/font&gt;</code><font style="color:#01B2BC;">树：当前渲染到页面的 Fiber 树；</font></li>
+<li><code>&lt;font style=&quot;color:#01B2BC;&quot;&gt;workInProgress&lt;/font&gt;</code><font style="color:#01B2BC;">树：正在计算的下一帧 Fiber 树。</font></li>
+</ul>
+<p><font style="color:#01B2BC;">每次更新时，React 会基于 </font><code>&lt;font style=&quot;color:#01B2BC;&quot;&gt;current&lt;/font&gt;</code><font style="color:#01B2BC;">树生成 </font><code>&lt;font style=&quot;color:#01B2BC;&quot;&gt;workInProgress&lt;/font&gt;</code><font style="color:#01B2BC;">树，计算差异（diff），然后将 </font><code>&lt;font style=&quot;color:#01B2BC;&quot;&gt;workInProgress&lt;/font&gt;</code><font style="color:#01B2BC;">树提交到 DOM（成为新的 </font><code>&lt;font style=&quot;color:#01B2BC;&quot;&gt;current&lt;/font&gt;</code><font style="color:#01B2BC;">树）。这种机制避免了重复计算，提升了 diff 效率。</font></p>
+<ol start="20">
+<li>schelude怎么分配优先级</li>
+</ol>
+<p><strong><font style="color:#01B2BC;">React Scheduler（调度器）的优先级分配</font></strong><font style="color:#01B2BC;">，需要先明确：</font><strong><font style="color:#01B2BC;">Scheduler 是 React 用来管理任务执行顺序的核心模块</font></strong><font style="color:#01B2BC;">，它通过「优先级分级」和「任务队列管理」，确保高优先级任务（如用户交互）优先执行，避免长任务阻塞主线程。</font></p>
+<table>
+<thead>
+<tr>
+<th align="left"><strong><font style="color:rgb(0, 0, 0);">立即执行</font></strong></th>
+<th align="left"><code>&lt;font style=&quot;color:rgb(0, 0, 0);&quot;&gt;Immediate&lt;/font&gt;</code></th>
+<th align="left"><font style="color:rgb(0, 0, 0);">错误边界（</font><code>&lt;font style=&quot;color:rgb(0, 0, 0);&quot;&gt;componentDidCatch&lt;/font&gt;</code><font style="color:rgb(0, 0, 0);">）、布局测量（</font><code>&lt;font style=&quot;color:rgb(0, 0, 0);&quot;&gt;measureLayout&lt;/font&gt;</code><font style="color:rgb(0, 0, 0);">）、强制更新（</font><code>&lt;font style=&quot;color:rgb(0, 0, 0);&quot;&gt;forceUpdate&lt;/font&gt;</code><font style="color:rgb(0, 0, 0);">）</font></th>
+<th align="left"><font style="color:rgb(0, 0, 0);">必须</font><strong><font style="color:rgb(0, 0, 0);">立刻执行</font></strong><font style="color:rgb(0, 0, 0);">，否则会导致页面错误或布局崩溃；优先级最高，会打断所有低优先级任务。</font></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong><font style="color:rgb(0, 0, 0);">2. 用户阻塞</font></strong></td>
+<td align="left"><code>&lt;font style=&quot;color:rgb(0, 0, 0);&quot;&gt;UserBlocking&lt;/font&gt;</code></td>
+<td align="left"><font style="color:rgb(0, 0, 0);">用户交互事件（</font><code>&lt;font style=&quot;color:rgb(0, 0, 0);&quot;&gt;onClick&lt;/font&gt;</code><font style="color:rgb(0, 0, 0);">&#x2F;</font><code>&lt;font style=&quot;color:rgb(0, 0, 0);&quot;&gt;onChange&lt;/font&gt;</code><font style="color:rgb(0, 0, 0);">）、键盘输入、滚动事件</font></td>
+<td align="left"><font style="color:rgb(0, 0, 0);">直接影响用户体验，</font><strong><font style="color:rgb(0, 0, 0);">优先于普通任务</font></strong><font style="color:rgb(0, 0, 0);">；若正在执行低优先级任务，会被中断。</font></td>
+</tr>
+<tr>
+<td align="left"><strong><font style="color:rgb(0, 0, 0);">3. 普通</font></strong></td>
+<td align="left"><code>&lt;font style=&quot;color:rgb(0, 0, 0);&quot;&gt;Normal&lt;/font&gt;</code></td>
+<td align="left"><font style="color:rgb(0, 0, 0);">数据获取（</font><code>&lt;font style=&quot;color:rgb(0, 0, 0);&quot;&gt;fetch&lt;/font&gt;</code><font style="color:rgb(0, 0, 0);">）、</font><code>&lt;font style=&quot;color:rgb(0, 0, 0);&quot;&gt;setState&lt;/font&gt;</code><font style="color:rgb(0, 0, 0);">触发的非交互更新、列表渲染</font></td>
+<td align="left"><font style="color:rgb(0, 0, 0);">后台执行，若遇到更高优先级任务会暂停，完成后恢复。</font></td>
+</tr>
+<tr>
+<td align="left"><strong><font style="color:rgb(0, 0, 0);">4. 低</font></strong></td>
+<td align="left"><code>&lt;font style=&quot;color:rgb(0, 0, 0);&quot;&gt;Low&lt;/font&gt;</code></td>
+<td align="left"><font style="color:rgb(0, 0, 0);">预加载、日志记录、非关键的状态更新</font></td>
+<td align="left"><font style="color:rgb(0, 0, 0);">只有当主线程空闲时才会执行，不影响当前交互。</font></td>
+</tr>
+<tr>
+<td align="left"><strong><font style="color:rgb(0, 0, 0);">5. 空闲</font></strong></td>
+<td align="left"><code>&lt;font style=&quot;color:rgb(0, 0, 0);&quot;&gt;Idle&lt;/font&gt;</code></td>
+<td align="left"><font style="color:rgb(0, 0, 0);">离线计算、数据预处理、无用户感知的任务</font></td>
+<td align="left"></td>
+</tr>
+</tbody></table>
+<p> 事件捕获和事件冒泡顺序</p>
+<p><font style="color:#01B2BC;">先事件捕获再冒泡</font><br>怎么让事件冒泡先获取</p>
+<p>让监听器再冒泡阶段执行，</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 父元素：只监听冒泡阶段（事件从子元素向上冒泡时触发）</span></span><br><span class="line">parentElement.<span class="title function_">addEventListener</span>(<span class="string">&#x27;click&#x27;</span>, <span class="function">(<span class="params">e</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;父元素的冒泡监听器&#x27;</span>);</span><br><span class="line">&#125;, <span class="literal">false</span>); <span class="comment">// 默认false，可省略</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 子元素：只监听冒泡阶段（自身触发事件后向上传播）</span></span><br><span class="line">childElement.<span class="title function_">addEventListener</span>(<span class="string">&#x27;click&#x27;</span>, <span class="function">(<span class="params">e</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;子元素的冒泡监听器&#x27;</span>);</span><br><span class="line">&#125;, <span class="literal">false</span>);</span><br></pre></td></tr></table></figure>
+
+<p>本地存储方式</p>
+<p><code>&lt;font style=&quot;color:rgb(0, 0, 0);&quot;&gt;Cookie&lt;/font&gt;</code><font style="color:rgb(0, 0, 0);">→ </font><code>&lt;font style=&quot;color:rgb(0, 0, 0);&quot;&gt;SessionStorage&lt;/font&gt;</code><font style="color:rgb(0, 0, 0);">→ </font><code>&lt;font style=&quot;color:rgb(0, 0, 0);&quot;&gt;LocalStorage&lt;/font&gt;</code><font style="color:rgb(0, 0, 0);">→ </font><code>&lt;font style=&quot;color:rgb(0, 0, 0);&quot;&gt;IndexedDB&lt;/font&gt;</code><br>sessionStorage 大小，存满了怎么办？存满了再 set 会怎么样？</p>
+<p>5MB，好热<br>跨域问题怎么解决？</p>
+<p><font style="color:#01B2BC;">服务端配置响应头允许特定资源跨域，</font></p>
+<p><font style="color:#01B2BC;">前端用反向代理的方式，在配置文件中配置proxy</font></p>
+<p><font style="color:#01B2BC;">利用script特性用jsonp，不过只能用于get请求。</font></p>
+<p>CORS Option 字段有什么用？</p>
+<p><font style="color:#01B2BC;">用于预检请求，会携带客户端的源，实际请求方法以及自定义请求头，服务端会响应options请求，浏览器可以根据响应来判断查看当前的域名和端口是否被服务端允许请求，不允许则不会发送真正的请求</font><br>iframe 被攻击劫持怎么办？（具体场景是页面 A 嵌套了要被攻击的网站）</p>
+<p><font style="color:#01B2BC;">当 </font><strong><font style="color:#01B2BC;">页面A（父页面）嵌套了易被攻击的网站（子页面，如第三方站点）</font></strong><font style="color:#01B2BC;"> 时，攻击通常围绕 </font><strong><font style="color:#01B2BC;">iframe的特性</font></strong><font style="color:#01B2BC;">（如跨域嵌入、权限继承）展开，常见风险包括</font><strong><font style="color:#01B2BC;">点击劫持（Clickjacking）</font></strong><font style="color:#01B2BC;">、</font><strong><font style="color:#01B2BC;">恶意脚本注入</font></strong><font style="color:#01B2BC;">、</font><strong><font style="color:#01B2BC;">CSRF攻击</font></strong><font style="color:#01B2BC;">、</font><strong><font style="color:#01B2BC;">中间人窃听</font></strong><font style="color:#01B2BC;">等。以下是</font><strong><font style="color:#01B2BC;">分场景的针对性防御方案</font></strong><font style="color:#01B2BC;">，覆盖</font><strong><font style="color:#01B2BC;">父页面</font></strong><font style="color:#01B2BC;">和</font><strong><font style="color:#01B2BC;">子页面</font></strong><font style="color:#01B2BC;">的安全措施：</font></p>
+<p><font style="color:#01B2BC;">点击劫持：通过用透明层覆盖诱饵按钮，诱导用户点击隐藏的危险操作</font></p>
+<p><font style="color:#01B2BC;">限制iframe的嵌套权限+父页面规避不可信嵌套</font></p>
+<p><font style="color:#01B2BC;">恶意脚本注入：攻击者通过漏洞向子页面注入恶意js，窃取用户Cookie，发起CSRF或掉于。</font></p>
+<p><font style="color:#01B2BC;">启用严格安全策略（CSP）限制脚本，各个资源文件的来源。</font></p>
+<p><font style="color:#01B2BC;">csrf攻击</font></p>
+<p><font style="color:#01B2BC;">中间人窃听：攻击者拦截通信，窃听篡改内容</font></p>
+<p><font style="color:#01B2BC;">父子页面通信启用HTTPS，父页面通过验证子页面hash或数字签名的方式验证子页面完整性</font></p>
+<p>js v8 垃圾回收机制</p>
+<p><font style="color:#01B2BC;">为了避免内存泄漏喝性能瓶颈，通过多种算法来实现垃圾回收机制，也是v8引擎高性能喝稳定性的关键支撑。</font></p>
+<p><font style="color:#01B2BC;">分代管理：</font></p>
+<p><font style="color:#01B2BC;">新生代：</font></p>
+<p><font style="color:#01B2BC;">存放生命周期短的对象（临时变量、函数形参，未被闭包引用的局部变量等，占堆内存的1&#x2F;3到1&#x2F;2）</font></p>
+<p><font style="color:#01B2BC;">老生代：存放生命周期长的对象（全局变量，闭包引用对象，DOM节点等）</font><br>nodejs 单进程高并发如何实现的</p>
+<p><font style="color:#01B2BC;">依赖事件循环处理异步操作-单线程的事件调度器以及非阻塞的I&#x2F;o操作，基于libuv库实现的非阻塞的i&#x2F;0操作</font><br>一个 web 应用越用越卡怎么排查？怎么解决？</p>
+<p><strong><font style="color:#01B2BC;">Web应用越用越卡</font></strong><font style="color:#01B2BC;">的核心是</font><strong><font style="color:#01B2BC;">资源消耗累积或性能瓶颈未释放</font></strong><font style="color:#01B2BC;">，需从</font><strong><font style="color:#01B2BC;">前端、后端、数据库、资源&#x2F;缓存</font></strong><font style="color:#01B2BC;">四大维度排查。</font></p>
+<h4 id="40a5ff24">**<font style="color:#01B2BC;">1. 前端性能瓶颈排查</font>**</h4>
+**<font style="color:#01B2BC;">常见现象</font>**<font style="color:#01B2BC;">：页面渲染慢、交互延迟、内存占用持续上升。</font>
+
+<p><strong><font style="color:#01B2BC;">工具</font></strong><font style="color:#01B2BC;">：Chrome DevTools（Performance&#x2F;Memory&#x2F;Lighthouse）、Lighthouse CI。</font></p>
+<p><strong><font style="color:#01B2BC;">排查点</font></strong><font style="color:#01B2BC;">：</font></p>
+<ul>
+<li><strong><font style="color:#01B2BC;">渲染性能</font></strong><font style="color:#01B2BC;">：用Performance面板录屏，看</font><strong><font style="color:#01B2BC;">FPS</font></strong><font style="color:#01B2BC;">（低于60卡顿）、</font><strong><font style="color:#01B2BC;">TTI</font></strong><font style="color:#01B2BC;">（可交互时间）、</font><strong><font style="color:#01B2BC;">Layout Thrashing</font></strong><font style="color:#01B2BC;">（强制同步布局，如频繁读写offsetWidth）；</font></li>
+<li><strong><font style="color:#01B2BC;">内存泄漏</font></strong><font style="color:#01B2BC;">：用Memory面板拍</font><strong><font style="color:#01B2BC;">堆快照</font></strong><font style="color:#01B2BC;">，对比操作前后的对象增长（如未移除的事件监听、定时器、闭包引用）；</font></li>
+<li><strong><font style="color:#01B2BC;">资源加载</font></strong><font style="color:#01B2BC;">：Network面板看</font><strong><font style="color:#01B2BC;">瀑布流</font></strong><font style="color:#01B2BC;">（是否有未压缩的JS&#x2F;CSS、大图片、未使用CDN的资源）、</font><strong><font style="color:#01B2BC;">缓存命中率</font></strong><font style="color:#01B2BC;">（是否缺少Cache-Control&#x2F;Header）。</font></li>
+</ul>
+<p>浏览器性能指标（基本要说完，问了我还有没有），怎么拿到这个指标？</p>
+<p><font style="color:rgb(0, 0, 0);">浏览器性能指标分为</font><strong><font style="color:rgb(0, 0, 0);">加载性能</font></strong><font style="color:rgb(0, 0, 0);">（如LCP、FCP）、</font><strong><font style="color:rgb(0, 0, 0);">渲染性能</font></strong><font style="color:rgb(0, 0, 0);">（如CLS、FPS）、</font><strong><font style="color:rgb(0, 0, 0);">运行时性能</font></strong><font style="color:rgb(0, 0, 0);">（如内存、长任务）三大类。获取方式包括</font><strong><font style="color:rgb(0, 0, 0);">Chrome DevTools工具</font></strong><font style="color:rgb(0, 0, 0);">（Performance&#x2F;Lighthouse）、</font><strong><font style="color:rgb(0, 0, 0);">JavaScript API</font></strong><font style="color:rgb(0, 0, 0);">（PerformanceObserver）和</font><strong><font style="color:rgb(0, 0, 0);">真实用户监控（RUM）</font></strong><font style="color:rgb(0, 0, 0);">。</font></p>
+<h5 id="bd727fd9">**<font style="color:rgba(0, 0, 0, 0.9);">加载性能指标（用户感知“页面是否可用”）</font>**</h5>
+| <font style="color:rgb(0, 0, 0);">指标</font> | <font style="color:rgb(0, 0, 0);">定义</font> | <font style="color:rgb(0, 0, 0);">优化目标（移动端）</font> | <font style="color:rgb(0, 0, 0);">获取方式</font> |
+| :--- | :--- | :--- | :--- |
+| **<font style="color:rgb(0, 0, 0);">FP</font>**<font style="color:rgb(0, 0, 0);">（First Paint）</font> | <font style="color:rgb(0, 0, 0);">首次绘制时间（浏览器首次将任何内容渲染到屏幕，如背景色）</font> | <font style="color:rgb(0, 0, 0);"><1s</font> | <font style="color:rgb(0, 0, 0);">DevTools Performance面板 /</font><font style="color:rgb(0, 0, 0);"> </font>`<font style="color:rgb(0, 0, 0);">PerformanceObserver</font>` |
+| **<font style="color:rgb(0, 0, 0);">FCP</font>**<font style="color:rgb(0, 0, 0);">（First Contentful Paint）</font> | <font style="color:rgb(0, 0, 0);">首次内容绘制时间（渲染文本、图片等用户可见内容）</font> | <font style="color:rgb(0, 0, 0);"><1.8s</font> | <font style="color:rgb(0, 0, 0);">同上</font> |
+| **<font style="color:rgb(0, 0, 0);">LCP</font>**<font style="color:rgb(0, 0, 0);">（Largest Contentful Paint）</font> | <font style="color:rgb(0, 0, 0);">最大内容绘制时间（渲染最大可见元素的时间，如大图片/文本块）</font> | <font style="color:rgb(0, 0, 0);"><2.5s</font> | <font style="color:rgb(0, 0, 0);">同上</font> |
+| **<font style="color:rgb(0, 0, 0);">TTFB</font>**<font style="color:rgb(0, 0, 0);">（Time to First Byte）</font> | <font style="color:rgb(0, 0, 0);">首字节时间（从请求发起到接收服务器第一个字节的时间）</font> | <font style="color:rgb(0, 0, 0);"><0.8s</font> | <font style="color:rgb(0, 0, 0);">Network面板（查看请求的Timing） / DevTools</font> |
+| **<font style="color:rgb(0, 0, 0);">DOMContentLoaded</font>** | <font style="color:rgb(0, 0, 0);">DOM树构建完成时间（无需等待样式/图片加载）</font> | <font style="color:rgb(0, 0, 0);">-</font> | `<font style="color:rgb(0, 0, 0);">document.addEventListener('DOMContentLoaded', ...)</font>` |
+| **<font style="color:rgb(0, 0, 0);">Load</font>** | <font style="color:rgb(0, 0, 0);">页面完全加载时间（包括图片、脚本等所有资源）</font> | | |
+
+
+<h5 id="1f145db0">**<font style="color:rgba(0, 0, 0, 0.9);">渲染性能指标（用户感知“页面是否流畅”）</font>**</h5>
+| <font style="color:rgb(0, 0, 0);">指标</font> | <font style="color:rgb(0, 0, 0);">定义</font> | <font style="color:rgb(0, 0, 0);">优化目标（移动端）</font> | <font style="color:rgb(0, 0, 0);">获取方式</font> |
+| :--- | :--- | :--- | :--- |
+| **<font style="color:rgb(0, 0, 0);">CLS</font>**<font style="color:rgb(0, 0, 0);">（Cumulative Layout Shift）</font> | <font style="color:rgb(0, 0, 0);">累计布局偏移（意外元素移动导致的视觉不稳定，如图片未设尺寸突然加载）</font> | <font style="color:rgb(0, 0, 0);"><0.1</font> | <font style="color:rgb(0, 0, 0);">DevTools Performance面板（Summary标签） /</font><font style="color:rgb(0, 0, 0);"> </font>`<font style="color:rgb(0, 0, 0);">PerformanceObserver</font>` |
+| **<font style="color:rgb(0, 0, 0);">FPS</font>**<font style="color:rgb(0, 0, 0);">（Frames Per Second）</font> | <font style="color:rgb(0, 0, 0);">每秒帧数（低于60fps会感知卡顿）</font> | <font style="color:rgb(0, 0, 0);">>60fps</font> | <font style="color:rgb(0, 0, 0);">DevTools Performance面板（Rendering标签开启FPS监控）</font> |
+| **<font style="color:rgb(0, 0, 0);">回流（Reflow）</font>** | <font style="color:rgb(0, 0, 0);">元素位置/尺寸变化导致浏览器重新计算布局（如修改width/height）</font> | <font style="color:rgb(0, 0, 0);">减少次数</font> | <font style="color:rgb(0, 0, 0);">DevTools Performance面板（查看Layout事件）</font> |
+| **<font style="color:rgb(0, 0, 0);">重绘（Repaint）</font>** | <font style="color:rgb(0, 0, 0);">元素颜色/背景变化但布局不变（如修改color）</font> | <font style="color:rgb(0, 0, 0);">减少次数</font> | |
+
+
+<h5 id="daf0cc47">**<font style="color:rgba(0, 0, 0, 0.9);">运行时性能指标（用户感知“页面是否响应”）</font>**</h5>
+| <font style="color:rgb(0, 0, 0);">指标</font> | <font style="color:rgb(0, 0, 0);">定义</font> | <font style="color:rgb(0, 0, 0);">优化目标</font> | <font style="color:rgb(0, 0, 0);">获取方式</font> |
+| :--- | :--- | :--- | :--- |
+| **<font style="color:rgb(0, 0, 0);">JS Heap Size</font>** | <font style="color:rgb(0, 0, 0);">JS堆内存使用量（内存泄漏会导致持续增长）</font> | <font style="color:rgb(0, 0, 0);">稳定/缓慢增长</font> | <font style="color:rgb(0, 0, 0);">DevTools Memory面板（Heap Snapshot） /</font><font style="color:rgb(0, 0, 0);"> </font>`<font style="color:rgb(0, 0, 0);">performance.memory</font>`<font style="color:rgb(0, 0, 0);">API</font> |
+| **<font style="color:rgb(0, 0, 0);">长任务（Long Tasks）</font>** | <font style="color:rgb(0, 0, 0);">执行超过50ms的任务（阻塞事件循环，导致页面无响应）</font> | <font style="color:rgb(0, 0, 0);">减少次数</font> | <font style="color:rgb(0, 0, 0);">DevTools Performance面板（Main标签筛选Duration>50ms的任务）</font> |
+| **<font style="color:rgb(0, 0, 0);">事件循环延迟</font>** | <font style="color:rgb(0, 0, 0);">事件循环处理回调的延迟时间（超过100ms会影响交互）</font> | <font style="color:rgb(0, 0, 0);"><100ms</font> | <font style="color:rgb(0, 0, 0);">用</font>`<font style="color:rgb(0, 0, 0);">setInterval</font>`<font style="color:rgb(0, 0, 0);">监控或</font>`<font style="color:rgb(0, 0, 0);">EventLoopDelay</font>`<font style="color:rgb(0, 0, 0);">工具</font> |
+| **<font style="color:rgb(0, 0, 0);">INP</font>**<font style="color:rgb(0, 0, 0);">（Interaction to Next Paint）</font> | <font style="color:rgb(0, 0, 0);">交互响应时间（用户操作到页面响应的时间，如点击按钮到反馈）</font> | <font style="color:rgb(0, 0, 0);"><200ms</font> | |
+
+
+  
+<p>怎么知道哪部分需要优化？</p>
+<p><font style="color:#01B2BC;">先定义性能基线时什么样的，然后用工具采集各个性能指标数据</font><br>页面唤起应用是怎么实现的？<br>用户反馈的问题在开发环境无法复现怎么办？</p>
+<p><font style="color:#01B2BC;">多半时环境差异导致的或者时偶发性问题，如果时环境差异的话就对齐环境包括版本依赖，框架配置，以及一些第三方服务都要对齐，然后开发环境得用脱敏的生产环境的数据，补全日志捕捉用户行为的上下文，模拟用户操作路径和状态。</font><br>了不了解 SSE 和 service worker</p>
+<p><font style="color:#01B2BC;">SSE（Server-Sent Events）是</font><strong><font style="color:#01B2BC;">服务器向客户端单向推送实时数据</font></strong><font style="color:#01B2BC;">的技术，适合新闻、股票等实时更新场景；Service Worker 是</font><strong><font style="color:#01B2BC;">浏览器后台运行的脚本</font></strong><font style="color:#01B2BC;">，独立于网页，负责离线缓存、请求拦截、推送通知等，是 PWA（渐进式网页应用）的核心技术。两者均为前端与后端通信或优化的关键工具，但定位和功能差异明显。</font></p>
+<p><font style="color:#01B2BC;">SSE 是 HTML5 标准的一部分，基于 HTTP 长连接，允许服务器</font><strong><font style="color:#01B2BC;">单向、持续</font></strong><font style="color:#01B2BC;">向客户端发送数据（如文本、JSON）。又自动重连机制</font></p>
+<p><font style="color:#01B2BC;">Service Worker（简称 SW）是运行在浏览器后台的</font><strong><font style="color:#01B2BC;">独立线程脚本</font></strong><font style="color:#01B2BC;">，独立于网页，可拦截请求、缓存资源、实现离线功能，是 PWA 的核心技术。</font><br>怎么让网站在搜索引擎靠前</p>
+<p><font style="color:#01B2BC;">利用ssr技术，利用meta标签定义号关键词，标题等，多用结构化标签比如header，article之类的，<br></font><font style="color:#01B2BC;">配置html标签的meta，使用history路由，使用SSR服务端渲染，使用结构化DOM比如header之类的，提升加载速度，配置robots。txt确保网页可以爬取，https加密</font>  </p>
+<p>6.flex出现之前如何实现占据剩余空间</p>
+<p><font style="color:#01B2BC;">表格布局，父容器设置为表格，子元素设置表格单元</font></p>
+<p><font style="color:#01B2BC;">浮动布局噢，计算剩余空间calc（）</font></p>
+<p><font style="color:#01B2BC;">父元素relative布局，子元素绝对布局，用定位</font></p>
+<p>100%<br>7.css如何实现不同机型适配</p>
+<p><font style="color:#01B2BC;">媒体查询，利用rem设置根元素字体，后续元素都用rem来设置，flex，grid等布局，或者用vh，vw等视口单位</font><br>8.js闭包</p>
+<p><strong><font style="color:#01B2BC;">函数与其定义时的词法环境（外部变量）的组合</font></strong></p>
+<p><font style="color:#01B2BC;">闭包就是指的再一个函数中返回另一个函数，而返回的函数持有对外部函数变量的引用，从而能够长期保存函数与变量的一个上下文。</font><br>10.ref原理</p>
+<p><font style="color:rgb(0, 0, 0);">Re</font><font style="color:#01B2BC;">act 中的 </font><code>&lt;font style=&quot;color:#01B2BC;&quot;&gt;ref&lt;/font&gt;</code><font style="color:#01B2BC;">是</font><strong><font style="color:#01B2BC;">直接访问真实 DOM 节点或组件实例的机制</font></strong><font style="color:#01B2BC;">，其核心原理是通过</font><strong><font style="color:#01B2BC;">回调函数或对象引用</font></strong><font style="color:#01B2BC;">在 React 的虚拟 DOM 与真实 DOM 之间建立桥梁。</font><code>&lt;font style=&quot;color:#01B2BC;&quot;&gt;ref&lt;/font&gt;</code><font style="color:#01B2BC;">允许开发者在组件渲染后获取或操作真实 DOM，绕过虚拟 DOM 的抽象，适用于管理焦点、动画、集成第三方库等场景</font></p>
+<p><font style="color:#01B2BC;">通过</font><strong><font style="color:#01B2BC;">函数回调</font></strong><font style="color:#01B2BC;">将真实 DOM 节点或组件实例赋值给一个变量，适用于类组件和函数组件（需配合 </font><code>&lt;font style=&quot;color:#01B2BC;&quot;&gt;useRef&lt;/font&gt;</code><font style="color:#01B2BC;">或 </font><code>&lt;font style=&quot;color:#01B2BC;&quot;&gt;useState&lt;/font&gt;</code><font style="color:#01B2BC;">）。</font></p>
+<p><font style="color:#01B2BC;">React 内部通过一个</font><strong><font style="color:#01B2BC;">弱引用映射表</font></strong><font style="color:#01B2BC;">（WeakMap）管理所有 </font><code>&lt;font style=&quot;color:#01B2BC;&quot;&gt;ref&lt;/font&gt;</code><font style="color:#01B2BC;">，确保组件卸载时能自动清理引用，避免内存泄漏。</font></p>
+<p> get和post怎么理解？</p>
+<p><font style="color:#01B2BC;">向服务端请求资源的一种方式，不同的时get请求多用于请求数据，参数暴露再URL中，幂等（多次请求结果一致），post请求多用于提交表单（多次提交可能产生新资源），</font></p>
+<p>4.get和post在网络传输链路上有什么区别？</p>
+<p><font style="color:#01B2BC;">GET 和 POST 在网络传输链路上的核心区别体现在</font><strong><font style="color:#01B2BC;">参数位置、缓存处理、安全性、数据长度限制</font></strong><font style="color:#01B2BC;">及</font><strong><font style="color:#01B2BC;">服务器处理逻辑</font></strong><font style="color:#01B2BC;">上。GET 的参数暴露在 URL 中，支持缓存和书签，适合轻量读取；POST 的参数藏在请求体中，不可缓存，适合安全提交数据。两者因设计目标不同，在传输链路的各环节（浏览器→代理→服务器）被区别对待。</font></p>
+<p><font style="color:#01B2BC;">get可以缓存，post不可以缓存，post 可能含有一些请求头，get收url长度限制，参数过多可能会被截断。</font><br>5.小程序上也有url的长度限制吗？这个限制是谁做的？</p>
+<p><font style="color:#01B2BC;">有，平台差异，微信小程序，支付宝，抖音等其他小程序差异各不相同</font><br>6.简单请求和非简单请求？</p>
+<p><font style="color:#01B2BC;">差别时，是否需要预检的差异。</font></p>
+<p><font style="color:#01B2BC;">简单请求满足三个条件：请求方法（post&#x2F;get&#x2F;head（只获取响应头）），请求头仅包含安全字段（Accept，Accept-language，content-language，content-type（表单默认类型，文件上传类型和纯文本类型，不能有自定义请求头，比如Authorization））</font><br>7.自定义请求头是指什么？</p>
+<p><font style="color:#01B2BC;">指的非http协议标准的请求头字段，</font><font style="color:#01B2BC;">它的核心作用是传递客户端特有的元数据，辅助服务器更精准地处理请求或实现业务逻辑。</font><font style="color:#01B2BC;">和服务端约定的一个请求头字段。</font><font style="color:#01B2BC;">命名通常以 </font><code>&lt;font style=&quot;color:#01B2BC;&quot;&gt;X-&lt;/font&gt;</code><font style="color:#01B2BC;">开头</font><br>8.get幂等，post非幂等，主要什么原因导致的这种区别？</p>
+<p><font style="color:#01B2BC;">主要时get通常不修改服务器资源，而post可能修改服务器资源</font><br>10.get请求的默认缓存能力</p>
+<p><font style="color:#01B2BC;">浏览器缓存（强缓存-检查响应头的Cache-Control或Expires，协商缓存（发送IF-Modified-since（基于Etag），更具服务器是否返回304来判断）（服务器给出Last-Modified））</font></p>
+<p><font style="color:#01B2BC;">代理服务器缓存，通常也时遵循Cache-Control头</font></p>
+<p><font style="color:#01B2BC;">CDN缓存，一样根据Cache-Contril头</font><br>11.浏览器缓存有磁盘缓存和内存缓存，这个了解吗？浏览器怎么控制这两个缓存空间？两个的主要作用？</p>
+<p>内存缓存块&#x2F;小，磁盘缓存大&#x2F;慢，根据需要缓存文件的大小，和当前内存情况来控制将资源缓存再哪个位置</p>
+<p><font style="color:rgb(0, 0, 0);">浏览器根据响应头中的缓存相关字段，决定资源存储到内存还是磁盘，以及缓存的有效期。关键头字段包括：</font></p>
+<table>
+<thead>
+<tr>
+<th align="left"><font style="color:rgb(0, 0, 0);">头字段</font></th>
+<th align="left"><font style="color:rgb(0, 0, 0);">作用</font></th>
+<th align="left"><font style="color:rgb(0, 0, 0);">对内存&#x2F;磁盘缓存的影响</font></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>&lt;font style=&quot;color:rgb(0, 0, 0);&quot;&gt;Cache-Control&lt;/font&gt;</code></td>
+<td align="left"><font style="color:rgb(0, 0, 0);">控制缓存的整体策略（HTTP&#x2F;1.1 标准）</font></td>
+<td align="left"><font style="color:rgb(0, 0, 0);">-</font><font style="color:rgb(0, 0, 0);"> </font><code>&lt;font style=&quot;color:rgb(0, 0, 0);&quot;&gt;public&lt;/font&gt;</code><font style="color:rgb(0, 0, 0);">：允许内存+磁盘缓存；   </font><font style="color:rgb(0, 0, 0);">-</font><font style="color:rgb(0, 0, 0);"> </font><code>&lt;font style=&quot;color:rgb(0, 0, 0);&quot;&gt;private&lt;/font&gt;</code><font style="color:rgb(0, 0, 0);">：仅允许内存缓存（代理&#x2F;CDN 不缓存）；   </font><font style="color:rgb(0, 0, 0);">-</font><font style="color:rgb(0, 0, 0);"> </font><code>&lt;font style=&quot;color:rgb(0, 0, 0);&quot;&gt;no-store&lt;/font&gt;</code><font style="color:rgb(0, 0, 0);">：禁止任何缓存。</font></td>
+</tr>
+<tr>
+<td align="left"><code>&lt;font style=&quot;color:rgb(0, 0, 0);&quot;&gt;Expires&lt;/font&gt;</code></td>
+<td align="left"><font style="color:rgb(0, 0, 0);">指定缓存过期时间（HTTP&#x2F;1.0）</font></td>
+<td align="left"><font style="color:rgb(0, 0, 0);">强制缓存过期后，浏览器从源站重新获取，可能更新内存&#x2F;磁盘缓存。</font></td>
+</tr>
+<tr>
+<td align="left"><code>&lt;font style=&quot;color:rgb(0, 0, 0);&quot;&gt;ETag&lt;/font&gt;</code><font style="color:rgb(0, 0, 0);">&#x2F;</font><code>&lt;font style=&quot;color:rgb(0, 0, 0);&quot;&gt;Last-Modified&lt;/font&gt;</code></td>
+<td align="left"><font style="color:rgb(0, 0, 0);">协商缓存标识（用于验证缓存是否有效）</font></td>
+<td align="left"><font style="color:rgb(0, 0, 0);">浏览器通过</font><font style="color:rgb(0, 0, 0);"> </font><code>&lt;font style=&quot;color:rgb(0, 0, 0);&quot;&gt;If-None-Match&lt;/font&gt;</code><font style="color:rgb(0, 0, 0);">或</font><font style="color:rgb(0, 0, 0);"> </font><code>&lt;font style=&quot;color:rgb(0, 0, 0);&quot;&gt;If-Modified-Since&lt;/font&gt;</code><font style="color:rgb(0, 0, 0);">验证，决定是否复用磁盘缓存。</font></td>
+</tr>
+<tr>
+<td align="left"><code>&lt;font style=&quot;color:rgb(0, 0, 0);&quot;&gt;Cache-Control: max-age&lt;/font&gt;</code></td>
+<td align="left"><font style="color:rgb(0, 0, 0);">指定缓存有效期（秒，优先级高于</font><font style="color:rgb(0, 0, 0);"> </font><code>&lt;font style=&quot;color:rgb(0, 0, 0);&quot;&gt;Expires&lt;/font&gt;</code><font style="color:rgb(0, 0, 0);">）</font></td>
+<td align="left"><font style="color:rgb(0, 0, 0);">决定资源在内存&#x2F;磁盘中保留的最长时间。</font></td>
+</tr>
+</tbody></table>
+<p>12.强缓存和协商缓存什么时候走内存&#x2F;磁盘缓存？</p>
+<p>13.settimeout时间不准确的问题？</p>
+<p>14.setTimeout 与浏览器渲染帧率的关系？</p>
+<p>15.requestAnimationFrame怎么解决settimeout时间不准确的问题？</p>
+<p>16.async&#x2F;await和promise怎么解决回掉地狱？两者有什么区别？</p>
+<p>17.两个数组相加在浏览器中执行结果：[1, 2, 3] + [4, 5, 6]？<br>18.解构赋值通过什么触发的？解构赋值是什么? </p>
+<p>就是一个复杂对象可通过…的操作符，将对象内部的属性赋值给多个变量<br>19.用var实现const，写伪代码即可</p>
+<p>2.项目：有什么复杂的技术点？文件上传如何实现断点续传，虚拟列表的原理</p>
+<p>3.vue2和vue3实现数据双向绑定的区别</p>
+<p>4.数据双向绑定各流程发生的时机是什么</p>
+<p>5.讲一下虚拟dom和diff算法，vue3的diff算法做了什么优化</p>
+<p>6.vue中如何实现视图的强制更新，以及数据变动时视图强制不更新？</p>
+<p>7.webpack和vite的区别</p>
+<p>8.webpack的构建过程经历了什么详细介绍一下</p>
+<p>9.webpack的tapable，complier，complation是否了解</p>
+<p>10.Vuex和pinia的区别？设计模式或者理念是什么？是否了解过flux等其他的模式</p>
+<p>2.实习有哪些复杂点</p>
+<p>3.文件切片是怎么切的，文件过大切片数量很多怎么处理，上传请求用的是什么请求方式</p>
+<p>过多可以控制一下并发，创建一个请求队列合最大请求数来控制请求。</p>
+<p>4.get请求和post请求的区别，post和put的区别，post的参数能放在url里面吗？</p>
+<p>5.虚拟列表的实现原理</p>
+<p>6.实习中有没有接触过如何部署项目？</p>
+<p>7.埋点的需求和实现方案是什么？</p>
+<p>8.实习中运用到的iframe框架讲一下？</p>
+<p>9.讲一下项目中提到的SSE，为什么不用SSE而选用其他的</p>
+<p>10.项目的服务端是你做的吗？有没有部署过项目</p>
+<p>11.https如何保证安全，加密是公钥签名还是私钥签名</p>
+<p>12.UDP协议有哪些运用？</p>
+<ul>
+<li>循环递增的数组找最小值，时间最优</li>
+<li>二叉树的深度</li>
+<li>合并有序链表</li>
+<li>自我介绍</li>
+<li>开始拷打</li>
+<li>进程中的内存是怎么分布的</li>
+<li>进程和线程的区别</li>
+<li>进程间的通信手段</li>
+<li>二进制如何上传给服务端</li>
+<li>String() 和 toString() 底层是如何实现的</li>
+<li>如何实现客户端与服务端的长连接</li>
+<li>URL 有长度限制吗</li>
+<li>如何优化网页加载</li>
+<li>讲讲 base64</li>
+<li>gbk 和 utf-8 的区别</li>
+<li>个人优势和劣势</li>
+<li>团队前端开发流程</li>
+</ul>
+<ol start="2">
+<li><p>JS定义变量方式？let const var区别？</p>
+</li>
+<li><p>为什么用const定义变量不可以被修改？底层原理？一定不能改？[黑薯问号R][黑薯问号R]</p>
+</li>
+<li><p><code>let a = 1; let a = 2;</code> 会发生什么？会报什么错？</p>
+</li>
+<li><p><code>var a = 1; var a = 2;</code> 可以吗？<code>var a = 1; let a = 2;</code> 呢？</p>
+</li>
+<li><p><code>var</code>特性（如变量提升）？<code>console.log(a); var a = 1;</code> 的结果是什么？</p>
+</li>
+<li><p>JS中基本数据类型？分别存储在哪里（栈&#x2F;堆）？</p>
+</li>
+<li><p><code>let a = &#123;&#125;; b = a; </code>修改b会影响a吗（会）如何避免（深拷贝）</p>
+</li>
+<li><p>什么是同步和异步？什么场景下使用异步？</p>
+</li>
+<li><p>如何将异步操作中的变量&#x2F;结果给同步代码使用？</p>
+</li>
+<li><p>Promise的.then()和.catch()区别？什么情况用？await?</p>
+</li>
+<li><p>&#x3D;&#x3D;和 &#x3D;&#x3D;&#x3D;区别？</p>
+</li>
+<li><p>false &#x3D;&#x3D; ‘0’结果？false &#x3D;&#x3D; undefined？null &#x3D;&#x3D; undefined ？</p>
+</li>
+<li><p>可以 let null &#x3D; 1吗？</p>
+</li>
+<li><p>String常用的方法？</p>
+</li>
+<li><p>Array有哪些常用的增删改查方法？</p>
+</li>
+<li><p>typeof和 instanceof 区别？</p>
+</li>
+<li><p>介绍一下 Webpack</p>
+</li>
+<li><p>Webpack 中的 Loader ？作用？</p>
+</li>
+<li><p>Webpack 有哪些特性？构建速度？如何优化？</p>
+</li>
+<li><p>什么是 HTTP？和 HTTPS 区别？</p>
+</li>
+<li><p>为什么 HTTPS 安全？（对称加密和非对称加密解释 HTTPS 的原理）</p>
+</li>
+<li><p>算法题：分金条（LeetCode原题：分发糖果）。</p>
+</li>
+<li><p>解法时间和空间复杂度分别是多少？</p>
+</li>
+<li><p>开发过程中遇到过什么问题？（结合项目说了点方法论）</p>
+</li>
+<li><p>职业规划？</p>
+</li>
+</ol>
+<p>讲一下最近的项目以及难点亮点</p>
+<p>2：讲一下 vue 和 react 的 区别？</p>
+<p>3：讲一下 闭包 优缺点</p>
+<p>4：为什么react useState 要用数组解构，而不是函数</p>
+<p>5：讲一下react 生命周期</p>
+<p>6：讲一下 react render的全流程</p>
+<p>7：react协调算法是什么实现的，为什么需要Fiber</p>
+<p>8：什么是Fiber 架构，空闲渲染有了解吗？</p>
+<p>看你稀土掘金上用到cursor，有什么比较好用的功能可以分享一下吗？</p>
+<p>3：mcp 协议了解吗？配置过吗，写过 rules 吗？</p>
+<p>4：团队代码codeReview 是怎么做的？</p>
+<p>5：数据库 连接用过吗？ 有哪几种连接？ join</p>
+<p>6：你的项目有上线过吗？有没有性能压力 在互联网上 有没有解决过实际的高并发的场景。</p>
+<p>7：react hooks 有哪些？ useMemo的作用。</p>
+<p>8：vite中 配置代理怎么配？</p>
+<p>9：弹幕库的实现原理？</p>
+<p>10：http 和 https的区别 这个s是什么，加密怎么做的？</p>
+<p>11： 描述一下快速排序的思想</p>
+<p>12：无序数组 数组长度是N 找到第K大的元素 K小于N</p>
+<p>13：前端怎么做性能优化，懒加载是怎么实现的</p>
+<p>14：网页从请求到渲染之间经历了什么？</p>
+<p>15：跨域是什么 有哪些解决方案</p>
+<p>16：浏览器缓存了解吗？indexDB有没有用过？</p>
+<p>1：虚拟dom的优势，为什么vue3还要依旧延续虚拟dom</p>
+<p>2：react 渲染原理</p>
+<p>3：工程架构怎么做的，技术选型怎么做的？</p>
+<p>4：打包优化你怎么做的，思路是什么</p>
+<p>5：react有没有封装过动态表单，怎么封装 思路是什么？</p>
+<p>6：useEffect 的 四种场景分别在上面时候触发的</p>
+<p>7：让你设计一个商城你怎么做，你应该考虑哪些方面</p>
+<p>8：做过哪些性能优化</p>
+<p>9：vite 和 webpack的区别 优缺点在哪里？  </p>
+<p>js有哪些数据类型？<br>基本类型和引用类型的区别？<br>介绍下有哪些gc的方法？<br>堆和栈的区别？。<br>tcp和udp的区别？<br>介绍下节流和防抖</p>
+<p> 说下usememo和usecallback<br>❗更熟悉哪个方面的技术栈(讲了自己的学习实习经历，感觉得准备两份根据jd来的说法。因为感觉招聘的偏react的多)<br>❗有没有考虑过不用open ai这个库来实现调用api？？？(没了解。。。)<br>❗对话做了发送有没有考虑中断这个行为？怎么实现？(说了知道这个库里面好像有个方法，但是没有实际做)<br>❗项目中遇到了什么困难？(没准备，直接就说了redux中间件thunk不了解原理😟，但是确实没遇到啥困难，想不出来。)  </p>
+<p> 虚拟滚动怎么实现的？<br>数据坐标是怎么存储的？<br>搜索的防抖是怎么实现的？<br>如果说用户电脑性能非常好那需要防抖吗？<br>怎么去验证你的防抖是起到性能优化效果的？<br>防抖的时间阈值如何权衡，在用户体验和性能之间？<br>（项目拷问结束，下为常规八卦）<br>防抖和节流区别？<br>websocket是什么？建立一个连接需要几步？在过程中浏览器会发送哪些请求，如何变为ws连接？<br>心跳机制和断线重连是怎么实现的？<br>移动端适配是怎么做的？<br>两种方案（响应式布局和媒体查询）的优缺点？<br>JS有什么基本数据类型？引用数据类型和它们的区别？<br>讲一下事件循环。<br>promise有哪些状态？如何流转？<br>（随后一道promise代码分析题，宏任务微任务那套问输出顺序那一套）<br>箭头函数和普通函数的区别？<br>包管理工具？npm和yarn区别？为什么有npm还要出现yarn？<br>构建工具？webpack和vite区别？</p>
+<p> 开发PC端多还是移动端多？<br>在封装一个组件时需要考虑什么？有没有一套自己的设计原则？<br>说一下对状态管理的理解。<br>你做的东西用到的不同变量都怎么存？如何交互？（组件间）<br>localstorage最大存多少？过期时间？确定不会过期？<br>技术选型时vue和react如何考虑？（面试官说确实生态很重要）  </p>
+<p>自我介绍</p>
+<p>跨域</p>
+<p>预检请求</p>
+<p>css的选择器 ：～号忘记啥意思了。</p>
+<p>通用兄弟选择器</p>
+<p>事件委托是啥？冒泡捕获是啥</p>
+<p>就是基于事件传播的冒泡机制，将子元素的事件委托给父元素来做处理，可以减少事件监听器的个数。</p>
+<p>bfc是什么？</p>
+<p>块级区块，就是当设置了display，或者hidden不为visible的情况下，外部布局无法影响到bfc内部布局。</p>
+<p>说一下最有成就感的项目</p>
+<p>怎么学习，哪些类型资料10.个人有哪些擅长的事情<br>怎么学习的<br>平时会做一些别的项目吗<br>介绍项目  </p>
+<h2 id="p53RQ">计算机网络八股</h2>
+http 最新版本和特性  
+为什么要用 udp，解决了什么问题  
+udp 丢包怎么办  
+tcp 队头堵塞
+
+<p>https加密过程<br>http状态码<br>http缓存</p>
+<h1 id="sA6XU">手写</h1>
+实现一个 Hook：监听窗口尺寸变化并返回宽高，考虑性能优化  
+为什么用节流而非防抖？
+
+<p>实现一个reduce（）</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">Array</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">myreduce</span>=<span class="keyword">function</span>(<span class="params">callbak,initvalue</span>)&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="keyword">typeof</span> callbak!==<span class="string">&#x27;function&#x27;</span>)&#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">TypeError</span>(callbak+<span class="string">&#x27;is not a function&#x27;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">0</span>;i&lt;<span class="variable language_">this</span>.<span class="property">length</span>;i++)&#123;</span><br><span class="line">        initvalue=<span class="title function_">callbak</span>(initvalue,<span class="variable language_">this</span>[i],i,<span class="variable language_">this</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> initvalue</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> arr=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(arr.<span class="title function_">myreduce</span>(<span class="function">(<span class="params">acc,current</span>)=&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> acc+current</span><br><span class="line">&#125;,<span class="number">0</span>))</span><br></pre></td></tr></table></figure>
+
+<p>用闭包实现计数器</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">caculeate</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="keyword">let</span> num = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(num)</span><br><span class="line">        num++</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> test = <span class="title function_">caculeate</span>()</span><br><span class="line"><span class="title function_">test</span>()</span><br><span class="line"><span class="title function_">test</span>()</span><br><span class="line"><span class="title function_">test</span>()</span><br></pre></td></tr></table></figure>
+
+<p>手撕红绿灯</p>
+<p>手撕：原型链实现继承 </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//用原型链实现继承</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">animal</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">name</span> = <span class="string">&#x27;an&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">cow</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">h</span> =<span class="string">&#x27;mou&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line">cow.<span class="property"><span class="keyword">prototype</span></span> = <span class="keyword">new</span> <span class="title function_">animal</span>()</span><br><span class="line">cow.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">constructor</span> = cow</span><br><span class="line"><span class="keyword">let</span> test  = <span class="keyword">new</span> <span class="title function_">cow</span>()</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(test.<span class="property">name</span>)</span><br></pre></td></tr></table></figure>
+
+<p>手撕：实现一个new关键字</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">myNew</span>(<span class="params">constructer,...args</span>)&#123;</span><br><span class="line">    <span class="keyword">let</span> obj = &#123;&#125;</span><br><span class="line">    <span class="title class_">Object</span>.<span class="title function_">setPrototypeOf</span>(obj,constructer.<span class="property"><span class="keyword">prototype</span></span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> result = constructer.<span class="title function_">apply</span>(obj,args)</span><br><span class="line">    <span class="keyword">return</span> result!==<span class="literal">null</span> &amp;&amp; (<span class="keyword">typeof</span> result === <span class="string">&quot;object&quot;</span> || <span class="keyword">typeof</span> result===<span class="string">&quot;function&quot;</span>)?<span class="attr">result</span>:obj</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">person</span>(<span class="params">name,age</span>)&#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">name</span> = name;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">age</span> = age</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> p = <span class="title function_">myNew</span>(person,<span class="string">&#x27;1&#x27;</span>,<span class="number">20</span>)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(p)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">myNew</span>(person,<span class="string">&#x27;1&#x27;</span>,<span class="number">20</span>))</span><br></pre></td></tr></table></figure>
+
+<p>手撕：快排</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">quickSort</span>(<span class="params">arr, left = <span class="number">0</span>, right = arr.length - <span class="number">1</span></span>) &#123;</span><br><span class="line">  <span class="comment">// 递归终止条件：当左边界不小于右边界时，说明子数组长度为0或1，无需排序</span></span><br><span class="line">  <span class="keyword">if</span> (left &gt;= right) <span class="keyword">return</span>;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">// 初始化指针，考虑边界问题，所以从left-1和right+1开始</span></span><br><span class="line">  <span class="keyword">let</span> i = left - <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">let</span> j = right + <span class="number">1</span>;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">// 选择基准值，这里选择中间位置的元素</span></span><br><span class="line">  <span class="keyword">const</span> pivot = arr[<span class="title class_">Math</span>.<span class="title function_">floor</span>((left + right) / <span class="number">2</span>)];</span><br><span class="line">  </span><br><span class="line">  <span class="comment">// 分区操作</span></span><br><span class="line">  <span class="keyword">while</span> (i &lt; j) &#123;</span><br><span class="line">    <span class="comment">// 从左向右找到第一个不小于基准值的元素</span></span><br><span class="line">    <span class="keyword">do</span> &#123;</span><br><span class="line">      i++;</span><br><span class="line">    &#125; <span class="keyword">while</span> (arr[i] &lt; pivot);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 从右向左找到第一个不大于基准值的元素</span></span><br><span class="line">    <span class="keyword">do</span> &#123;</span><br><span class="line">      j--;</span><br><span class="line">    &#125; <span class="keyword">while</span> (arr[j] &gt; pivot);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 如果i&lt;j，交换这两个元素的位置</span></span><br><span class="line">    <span class="keyword">if</span> (i &lt; j) &#123;</span><br><span class="line">      [arr[i], arr[j]] = [arr[j], arr[i]]; <span class="comment">// ES6解构赋值实现交换</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">// 递归排序左子数组（从left到j）</span></span><br><span class="line">  <span class="title function_">quickSort</span>(arr, left, j);</span><br><span class="line">  </span><br><span class="line">  <span class="comment">// 递归排序右子数组（从j+1到right）</span></span><br><span class="line">  <span class="title function_">quickSort</span>(arr, j + <span class="number">1</span>, right);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>手撕：函数柯西里</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//函数柯里西</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">curry</span>(<span class="params">fn</span>)&#123;</span><br><span class="line">    <span class="keyword">let</span> arg = []</span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">_curry</span>(<span class="params">...args</span>)&#123;</span><br><span class="line">        arg.<span class="title function_">push</span>(...args)</span><br><span class="line">        <span class="keyword">if</span>(arg.<span class="property">length</span> == fn.<span class="property">length</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="title function_">fn</span>(...arg)</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> _curry</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> _curry</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> st = <span class="title function_">curry</span>(<span class="function">(<span class="params">a,b,c</span>)=&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a+b+c</span><br><span class="line">&#125;)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">st</span>(<span class="number">1</span>)(<span class="number">2</span>,<span class="number">3</span>))</span><br></pre></td></tr></table></figure>
+
+<p>手撕：记录重复字符</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">charsTwo</span>(<span class="params">str</span>)&#123;</span><br><span class="line">    <span class="keyword">let</span> tmp = &#123;&#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">const</span> char <span class="keyword">of</span> str)&#123;</span><br><span class="line">        tmp[char] = (tmp[char] || <span class="number">0</span>)+<span class="number">1</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">let</span> res = &#123;&#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">const</span> char <span class="keyword">in</span> tmp)&#123;</span><br><span class="line">        <span class="keyword">if</span>(tmp[char]&gt;=<span class="number">2</span>)&#123;</span><br><span class="line">            res[char] = tmp[char]</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">charsTwo</span>(<span class="string">&#x27;aabbcdeeee&#x27;</span>))</span><br></pre></td></tr></table></figure>
+
+<p>❗手撕react写个定时器</p>
+<p>整数四则运算<br>给一个时间戳，转换为xx分钟前 xx小时前 昨天… </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">formatTime</span>(<span class="params">timestamp</span>)&#123;</span><br><span class="line"><span class="comment">//     if(timestamp&lt;1e12)&#123;</span></span><br><span class="line"><span class="comment">//         timestamp *=1000</span></span><br><span class="line"><span class="comment">//     &#125;</span></span><br><span class="line"><span class="comment">//     const diff = Date.now()-timestamp</span></span><br><span class="line"><span class="comment">//     if(diff&lt;0)return &#x27;未来时间&#x27;</span></span><br><span class="line"><span class="comment">//     if(diff&lt;60000)&#123;</span></span><br><span class="line"><span class="comment">//         return &#x27;刚刚&#x27;</span></span><br><span class="line"><span class="comment">//     &#125;else if(diff&lt;3600000)&#123;</span></span><br><span class="line"><span class="comment">//         const minu = Math.floor(diff/60000)</span></span><br><span class="line"><span class="comment">//         return `$&#123;minu&#125;分钟前`</span></span><br><span class="line"><span class="comment">//     &#125;else if(diff &lt; 86400000)&#123; // ≥1小时 → 小时前</span></span><br><span class="line"><span class="comment">//     const hours = Math.floor(diff / 3600000);</span></span><br><span class="line"><span class="comment">//     return `$&#123;hours&#125;小时前`;</span></span><br><span class="line"><span class="comment">//     &#125;else if (diff &lt; 604800000) return `$&#123;Math.floor(diff/86400000)&#125;天前`</span></span><br><span class="line"><span class="comment">// &#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>手写深拷贝</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">deepClone</span>(<span class="params">source,hash=<span class="keyword">new</span> <span class="built_in">WeakMap</span>()</span>)&#123;</span><br><span class="line">    <span class="keyword">if</span>(source == <span class="literal">null</span> || <span class="keyword">typeof</span> source !=<span class="string">&#x27;object&#x27;</span>)</span><br><span class="line">        <span class="keyword">return</span> source</span><br><span class="line">    <span class="keyword">if</span>(hash.<span class="title function_">has</span>(source))&#123;</span><br><span class="line">        <span class="keyword">return</span> hash.<span class="title function_">get</span>(source)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(<span class="title class_">Array</span>.<span class="title function_">isArray</span>(source))&#123;</span><br><span class="line">        <span class="keyword">let</span> objCopy = []</span><br><span class="line">        hash.<span class="title function_">set</span>(source,objCopy)</span><br><span class="line">        source.<span class="title function_">forEach</span>(<span class="function">(<span class="params">item,index</span>)=&gt;</span>&#123;</span><br><span class="line">            objCopy[index] = <span class="title function_">deepClone</span>(item,hash)</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">let</span> objCopy = &#123;&#125;</span><br><span class="line">    hash.<span class="title function_">set</span>(source,objCopy)</span><br><span class="line">    <span class="comment">// for(const [key,val] in source)&#123;</span></span><br><span class="line">    <span class="comment">//     objCopy[key] = deepClone(val,hash)</span></span><br><span class="line">    <span class="comment">// &#125;</span></span><br><span class="line">    <span class="title class_">Object</span>.<span class="title function_">keys</span>(source).<span class="title function_">forEach</span>(<span class="function">(<span class="params">key</span>)=&gt;</span>&#123;</span><br><span class="line">        objCopy[key]=<span class="title function_">deepClone</span>(source[key],hash)</span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="keyword">return</span> objCopy</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> original=&#123;</span><br><span class="line">    <span class="attr">name</span>:<span class="string">&#x27;Yupi&#x27;</span>,</span><br><span class="line">    <span class="attr">age</span>:<span class="number">18</span>,</span><br><span class="line">    <span class="attr">skills</span>:[<span class="string">&#x27;coding&#x27;</span>,<span class="string">&#x27;design&#x27;</span>],</span><br><span class="line">    <span class="attr">address</span>:&#123;</span><br><span class="line">        <span class="attr">city</span>:<span class="string">&#x27;Shanghai&#x27;</span>,</span><br><span class="line">        <span class="attr">zip</span>:<span class="string">&#x27;101000&#x27;</span>,</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">original.<span class="property">self</span>=original</span><br><span class="line"><span class="comment">// console.log(original.self)</span></span><br><span class="line"><span class="keyword">const</span> copy=<span class="title function_">deepClone</span>(original)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(copy);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(copy===original)</span><br></pre></td></tr></table></figure>
+
+<p>数组转数</p>
+<p>斐波那契数列</p>
+<p>实现promise.all</p>
+<p>字符串-转驼峰</p>
+<p>手撕settimeout实现定时任务</p>
+<p>看事件循环代码输出顺序</p>
+<p>节流函数是怎么实现的</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title function_">throttle</span> = (<span class="params">time,fn</span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">let</span> lastTime = <span class="number">0</span></span><br><span class="line">  <span class="keyword">return</span> <span class="title function_">functons</span>(<span class="params">...args</span>)&#123;</span><br><span class="line">    <span class="keyword">let</span> now = <span class="title class_">Date</span>.<span class="title function_">now</span>()</span><br><span class="line">    <span class="keyword">if</span>(now-lastTime&gt;time)&#123;</span><br><span class="line">      fn.<span class="title function_">apply</span>(<span class="variable language_">this</span>,args)</span><br><span class="line">      lastTime = now</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">  </span><br></pre></td></tr></table></figure>
+
+<h2 id="XVrfC">算法题：</h2>
+1. 给定二叉树结构和一个节点，找到从根节点到指定节点的路径。
+
+<ol start="2">
+<li>输出数组中第k小的树，用 js 写</li>
+</ol>
+<h1 id="CTEc5">实习项目</h1>
+1. 在实习经历当中我主要负责什么 
+
+<p>主要业务就是广告媒体的业务，也就是支付宝上面各个广告卡片相关逻辑的编写，同时也会有一些通用性的需求，比如监控上报等。</p>
+<ol start="2">
+<li><p>你觉得实习过程中或者做项目中有什么难点或亮点吗。</p>
+<ol>
+<li>我觉得再数字马力的实习工作中，一开始其实困难还挺多的，首席是里面用到的框架都是内部研发的，比如我用到的cube就是一个内部研发的框架，它的模板语法其实和vue是一样的，但是又是vue的子集，包括css也是标准css的子集，就会遇到很多的坑，另外里面的广告sdk其实用的是ioc架构，然后把不同场景不同技术栈的广告都赛在里面去共用一些广告通用能力，比如负反馈，埋点，监控等都做了封装，然后通过容器注入的方式去。另外就是这个调试很困难，链路会很长，调试起来很困难，除了cube本身有一些坑以外，由于数据都是客户端注入的，但是有的是通过一些封装好的内部原生组件去请求到的广告数据，所以一旦出一些奇怪的问题就需要各方来排查，包括客户端，服务端等。</li>
+</ol>
+</li>
+<li><p>实习当中用到了低代码，为什么用低代码，有哪些优势和局限性 （然后继续深挖低代码） 低代码和组件有什么差异 </p>
+</li>
+<li><p>在另一个项目中，如果用低代码去处理这个项目，你会怎么处理 </p>
+</li>
+<li><p>你在简历里提到对http和https及浏览器渲染过程比较熟悉，那你讲一下浏览器的渲染过程以及前端可以做哪些性能优化 提升用户体验，把你知道的都可以说出来 </p>
+</li>
+<li><p>实习当中有没有遇到技术难题，怎么解决的 </p>
+</li>
+<li><p>实习期间会感到有压力吗，在感到压力的情况下怎么保持工作的稳定性和持续高效输出，怎么应对压力 。<br>对我来说感受到压力的话，多半是处于一个需求多的并发状态，这种情况下的话就需要把需求的优先级顺序理清楚，然后要对要完成的需求进行任务的拆分，拆分完之后合理的安排到每一天去完成。只要安排合理然后每天都完成对应的事情其实压力就会减轻很多。另外的话可能是遇到了一些卡点，可能会导致压力过大，我觉得最好的方式就是在思考无果的情况下积极的去寻求一些更厉害的人的帮助，听听他们的建议，看能不能找到突破点，一旦卡点解决掉了，自然就没有压力。总之就是在有压力的情况下，不要消极，积极行动去解决问题。</p>
+</li>
+<li><p>对后端有多少了解（也没问具体问题，就是让你把知道的都说出来的感觉）<br>了解一点点吧，之前有用过 nodejs 和 mysql 做了一个简单的后端，主要就是提供了一个数据存储和简单数据处理的后端，给前端提供了一些接口。</p>
+</li>
+<li><p>简历提到的意向部门是wxg，你觉得如果你来了之后能为我们团队带来什么价值</p>
+</li>
+<li><p>反问</p>
+</li>
+</ol>
+<p>长沙得物2面</p>
+<ol>
+<li>vue2和vue3的区别<ol>
+<li>写法不同，一个是选项式，一个是组合式</li>
+<li>响应式的原理不同，vue3使用Proxy代理劫持整个对象，vue2用Object.defineProperty劫持属性</li>
+<li>生命周期也有变化</li>
+<li>vue3的diff算法有改进</li>
+<li>vue3 支持多个根节点</li>
+</ol>
+</li>
+<li>v-if和v-show的区别</li>
+</ol>
+<p>v-if的话是通过移除&#x2F;创建dom元素来实现元素的显示与隐藏，而v-show实是通过控制元素的disPlay属性是否为none来控制的</p>
+<ol start="3">
+<li>dom节点的增删对浏览器性能的影响</li>
+</ol>
+<p>频繁操作dom元素会降低浏览器的性能，触发重排和重绘对dom性能的影响程度不一样，重拍重新计算布局，影响会更大一点，如果每次对dom的一些操作的导致了重拍的话，就需要不停的重新计算布局。</p>
+<ol start="4">
+<li>网页卡顿和崩溃检查实现</li>
+</ol>
+<p>渲染帧率监控（FPS）</p>
+<ol start="5">
+<li>九宫格布局的多种实现</li>
+</ol>
+<p>display，float，grid布局都可以实现，margin也可以把</p>
+<ol start="6">
+<li>grid布局实现九宫格布局的缺点</li>
+<li>两端js代码输出题</li>
+<li>setTimeout和setInterval再浏览器是怎么执行的</li>
+</ol>
+<p>这两个都属于宏任务，再创建一个定时器的时候，会把他们的回调放入红任务队列中，然后开始计时，等计时结束就执行对应的回调函数</p>
+<ol start="9">
+<li>平时如何学习前端</li>
+<li>数组元素去重，不可以用set和indexOf</li>
+</ol>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>Author: </span><span class="post-copyright-info"><a href="https://riff-ligo.github.io">柯柯</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>Link: </span><span class="post-copyright-info"><a href="https://riff-ligo.github.io/2025/11/12/%E9%9B%B6%E6%95%A3%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98/">https://riff-ligo.github.io/2025/11/12/%E9%9B%B6%E6%95%A3%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>Copyright Notice: </span><span class="post-copyright-info">All articles on this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless otherwise stated.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%89%8D%E7%AB%AF%E5%85%AB%E8%82%A1/">前端八股</a></div><div class="post-share"><div class="social-share" data-image="/img/avatar.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width no-desc" href="/2025/11/02/hello/" title="hello"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">Previous</div><div class="info-item-2">hello</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">柯柯</div><div class="author-info-description">Hi，早上好，下午好，晚上好！</div><div class="site-data"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">6</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">3</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">2</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/RIFF-LIGO"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/LiJinYi6" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="/3203345259@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">简单记录</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Contents</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E5%85%AB%E8%82%A1"><span class="toc-number">1.</span> <span class="toc-text">基础八股</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%9D%99%E6%80%81%E6%96%B9%E6%B3%95"><span class="toc-number">1.0.0.1.</span> <span class="toc-text">静态方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9E%E4%BE%8B%E6%96%B9%E6%B3%95"><span class="toc-number">1.0.0.2.</span> <span class="toc-text">实例方法</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%9A%E5%8A%A1%E5%9C%BA%E6%99%AF"><span class="toc-number">2.</span> <span class="toc-text">业务场景:</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#qpLYo"><span class="toc-number">2.1.</span> <span class="toc-text">9月13日</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%BF%9B%E9%98%B6"><span class="toc-number">3.</span> <span class="toc-text">进阶</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#30c6ed3c"><span class="toc-number">3.0.0.0.1.</span> <span class="toc-text">浏览器发送 &#96;OPTIONS&#96;预检请求</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#zYQAe"><span class="toc-number">3.1.</span> <span class="toc-text">9月14日</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#d38d1019"><span class="toc-number">3.1.0.1.</span> <span class="toc-text">**避免垂直边距折叠，阻止浮动元素覆盖，隔离内部布局，不影响外部**</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DhYjM"><span class="toc-number">3.1.1.</span> <span class="toc-text">**解决长任务阻塞，提升页面响应性**</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JgvFk"><span class="toc-number">3.1.2.</span> <span class="toc-text">2. **支持优先级调度，保证关键任务优先**</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#buopX"><span class="toc-number">3.1.3.</span> <span class="toc-text">3. **优化性能，减少不必要的计算**</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#40a5ff24"><span class="toc-number">3.1.3.1.</span> <span class="toc-text">**1. 前端性能瓶颈排查**</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#bd727fd9"><span class="toc-number">3.1.3.1.1.</span> <span class="toc-text">**加载性能指标（用户感知“页面是否可用”）**</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#1f145db0"><span class="toc-number">3.1.3.1.2.</span> <span class="toc-text">**渲染性能指标（用户感知“页面是否流畅”）**</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#daf0cc47"><span class="toc-number">3.1.3.1.3.</span> <span class="toc-text">**运行时性能指标（用户感知“页面是否响应”）**</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#p53RQ"><span class="toc-number">3.2.</span> <span class="toc-text">计算机网络八股</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#sA6XU"><span class="toc-number">4.</span> <span class="toc-text">手写</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#XVrfC"><span class="toc-number">4.1.</span> <span class="toc-text">算法题：</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#CTEc5"><span class="toc-number">5.</span> <span class="toc-text">实习项目</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Posts</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/11/12/%E9%9B%B6%E6%95%A3%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98/" title="前端面试题（零散版）">前端面试题（零散版）</a><time datetime="2025-11-12T03:09:02.000Z" title="Created 2025-11-12 11:09:02">2025-11-12</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/11/02/hello/" title="hello">hello</a><time datetime="2025-11-02T03:32:31.000Z" title="Created 2025-11-02 11:32:31">2025-11-02</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/08/12/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%B8%B2%E6%9F%93%E6%9C%BA%E5%88%B6/" title="浏览器渲染机制">浏览器渲染机制</a><time datetime="2025-08-12T07:34:02.000Z" title="Created 2025-08-12 15:34:02">2025-08-12</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/06/22/jsx/" title="JSX初步学习">JSX初步学习</a><time datetime="2025-06-22T06:34:02.000Z" title="Created 2025-06-22 14:34:02">2025-06-22</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/06/22/%E7%88%B6%E5%AD%90-%E5%AD%90%E7%88%B6%E4%BC%A0%E5%8F%82%E6%95%B0/" title="React初学之父子传参">React初学之父子传参</a><time datetime="2025-06-22T06:34:02.000Z" title="Created 2025-06-22 14:34:02">2025-06-22</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url(/img/mainTopBkg.jpg);"><div id="footer-wrap"><div class="copyright">&copy;2025 By 柯柯</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.3.5</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Reading Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light and Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle Between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Settings"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back to Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
